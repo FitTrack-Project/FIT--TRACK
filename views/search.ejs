@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/693f483c38.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0px;
+      }
+
+      /* ----------고정 상단바 ---------------------------------------------- */
+      .defaultSetting {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      .mainTitle {
+        background-color: rgb(182, 182, 182);
+        padding: 20px;
+        text-align: center;
+        font-size: 40px;
+      }
+      .buttonBar {
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .buttonBar > .mypost,
+      .buttonBar > .write,
+      .buttonBar > .list {
+        padding: 10px;
+        cursor: pointer;
+      }
+      .buttonBar > .search {
+        padding: 10px;
+      }
+
+      .buttonBar > .mypost:hover,
+      .buttonBar > .write:hover,
+      .buttonBar > .list:hover {
+        background-color: white;
+        color: black;
+      }
+      /* ------------------------------------------------------------------------------------- */
+
+      .mostRecentPost {
+        background-color: rgb(124, 173, 155);
+      }
+
+      .allPostButton {
+        margin-top: 170px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .allPostButton:hover {
+        color: gray;
+        cursor: pointer;
+      }
+      /* 게시글의 top bar ! margin-top으로 게시물 사이 간격 조정하기 */
+      .bordTopbar {
+        background-color: rgb(71, 71, 75);
+        margin-top: 60px;
+        margin-left: 50px;
+        margin-right: 50px;
+        /* padding-bottom: 15px; */
+        height: 7vh;
+        color: white;
+        border-bottom: 1px solid black;
+        display: flex; /* Flexbox 적용 */
+        justify-content: space-between; /* 좌우 정렬 */
+        align-items: center; /* 세로 가운데 정렬 */
+        font-size: 15px;
+      }
+
+      .userContainer {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+      }
+      /* 게시글의 내용  */
+      .bordContent {
+        background-color: rgb(225, 128, 225);
+        margin-left: 50px;
+        margin-right: 50px;
+        padding-bottom: 170px;
+        color: white;
+        font-size: 15px;
+      }
+      .bordContentTitle {
+        background-color: green;
+        display: flex;
+        justify-content: center;
+        /* align-items: center; */
+      }
+      .bordContentContent {
+        background-color: blue;
+        display: flex;
+        justify-content: center;
+        /* padding: 100%; */
+      }
+
+      .denoteTitle {
+        display: flex;
+        justify-content: center;
+      }
+      .denoteContent {
+        display: flex;
+        justify-content: center;
+      }
+
+      /* 게시글의 댓글 */
+      .bordComment {
+        background-color: rgb(108, 150, 122);
+        margin-left: 50px;
+        margin-right: 50px;
+        /* padding-bottom: 2vh; */
+        /* border-bottom: 4vh; */
+        height: 5vh;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .sendComment {
+        width: 70%;
+      }
+
+      /* ----------------------------------------------------------------------- */
+      .bordInputComment {
+        width: 70%;
+        height: 50%;
+        resize: none;
+      }
+      .emptyHeart {
+        cursor: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="defaultSetting">
+      <div class="mainTitle">Fit Track</div>
+      <div class="buttonBar">
+        <div class="mypost" onclick="mypostButton()">내 게시물</div>
+        <div class="write" onclick="writeButton()">쓰기</div>
+        <div class="list" onclick="listButton()">목록</div>
+        <div class="search">
+          <input
+            type="text"
+            class="search"
+            id="search"
+            name="search"
+            autocomplete="off"
+          />
+          <button id="searchButton" onclick="search()">검색</button>
+        </div>
+      </div>
+    </div>
+
+    <div onclick="allPost()" class="allPostButton">전체 게시물</div>
+
+    <% if (searchData.length === 0) { %>
+    <div class="noPosts">게시물이 없습니다.</div>
+    <% } else { %> <% for (let i = 0; i < searchData.length; i++) { %>
+    <!-- 게시물을 띄우는 창 -->
+    <div class="postBord">
+      <!-- 게시물 쓰기 창의 topbar -->
+      <div class="bordTopbar">
+        <div class="userContainer">
+          <div class="userIcon">
+            &nbsp;&nbsp;<i
+              class="fa-solid fa-user fa-xl"
+              style="color: #ffff"
+            ></i>
+          </div>
+          <div class="userId">&nbsp;<%= searchData[i].user_id %></div>
+        </div>
+        <div class="timeNow">
+          <%= searchData[i].created_date.toISOString().split('T')[0] %> <% const
+          timeParts = searchData[i].created_time.split(':'); %> <%= timeParts[0]
+          %>:<%= timeParts[1] %>&nbsp;&nbsp;
+        </div>
+      </div>
+      <div class="bordContent">
+        <!-- <span class="denoteTitle">title</span> -->
+        <br />
+        <div class="bordContentTitle"><%= searchData[i].title %><br /></div>
+        <!-- <span class="denoteContent">content</span> -->
+        <br />
+        <div class="bordContentContent"><%= searchData[i].content %></div>
+      </div>
+      <!-- <div class="bordComment"> -->
+      <!-- 비어있는 하트 -->
+      <!-- <div class="heartNum">
+          <i
+            id="emptyHeart-<%= searchData[i].post_id%>"
+            class="fa-regular fa-heart fa-xl"
+            style="color: #db0606"
+            onclick="clickHeart(this)"
+          ></i>
+          <%= searchData[i].like_count %>
+        </div>
+
+        <div class="sendComment">
+          <textarea
+            rows="1"
+            cols="50"
+            class="bordInputComment"
+            id="bordInputComment"
+            placeholder="Comment"
+          ></textarea> -->
+      <!-- 전송버튼 -->
+      <!-- <i
+            class="fa-regular fa-paper-plane fa-xl"
+            style="color: #000000"
+            id="sendButton"
+          ></i>
+        </div>
+      </div> -->
+    </div>
+    <% } %> <% } %>
+  </body>
+  <script>
+    alert("<%= searchInput %>의 검색 결과 입니다.");
+    const postBord = document.querySelector(".postBord");
+    const write = document.querySelector(".write");
+    const list = document.querySelector(".list");
+    const writeBord = document.querySelector(".writeBord");
+    //localhost:8000/write
+    function writeButton() {
+      window.location.href = "/write";
+    }
+    //localhost:8000/list
+    function listButton() {
+      window.location.href = "/list";
+    }
+
+    //localhost:8000/search
+    function search() {
+      //검색 눌렀을 경우 데이터 베이스에서 일치하는 단어 있는 쿼리문 가져오기
+      const searchInput = document.getElementById("search");
+      if (!searchInput.value) {
+        alert("검색어를 입력하세요");
+      } else {
+        window.location.href = `/search?searchInput=${searchInput.value}`;
+      }
+    }
+
+    function allPost() {
+      window.location.href = `/`;
+    }
+  </script>
+</html>

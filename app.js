@@ -18,24 +18,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(
-    session({
-        secret: "your-secret-key",
-        resave: false,
-        saveUninitialized: true,
-    })
+  session({
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: true,
+  })
 );
 
 app.use("/auth", authRoutes);
 app.get("/", (req, res) => {
-    res.render("login", { loggedIn: req.session.user ? true : false });
+  res.render("login", { loggedIn: req.session.user ? true : false });
 });
-app.get("/auth/logout", authController.logout);
-
-app.get("/qrcode", qrcodeController.generateQRCode);
-app.get("/video", qrcodeController.playVideo);
 
 app.use("/", require("./routes/qrcode"));
 
 app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
+  console.log(`http://localhost:${PORT}`);
 });

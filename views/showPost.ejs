@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/693f483c38.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <style>
+      .defaultSetting {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      .mainTitle {
+        background-color: rgb(182, 182, 182);
+        padding: 20px;
+        text-align: center;
+        font-size: 40px;
+      }
+      .container {
+        margin-top: 100px;
+      }
+      .container > .backBar {
+        display: flex;
+        background-color: rgb(227, 227, 227);
+      }
+      .backBar > .backList {
+        display: inline;
+      }
+      .backBar > .backList:hover {
+        cursor: pointer;
+      }
+
+      .titleContainer {
+        background-color: rgb(0, 0, 0);
+        color: white;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .topContainer {
+        display: flex;
+        background-color: beige;
+        font-size: 15px;
+      }
+
+      .topContainer > .postId {
+        width: 40%;
+      }
+      .topContainer > .userId {
+        width: 13%;
+      }
+      .topContainer > .date {
+        display: flex;
+        align-items: center;
+        width: 42%;
+      }
+      .topContainer > .likeCount {
+        display: flex;
+        align-items: center;
+        width: 5%;
+      }
+
+      .constentContainer {
+        background-color: rgb(28, 38, 223);
+      }
+
+      .constent {
+        color: white;
+        height: 100px;
+        padding-top: 30px;
+        padding-bottom: 100%;
+        margin-left: 30px;
+        margin-right: 30px;
+      }
+
+      /* --------댓글------------------------------------------------------------------- */
+      .commentContainer {
+        /* 댓글 전체 css지정 */
+      }
+
+      .writeComment {
+        display: flex;
+        align-items: center;
+        resize: none;
+      }
+
+      .bordInputComment {
+        width: 90%;
+        resize: none;
+        /* overflow: hidden; */
+      }
+
+      .showComment {
+        display: flex;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="defaultSetting">
+      <div class="mainTitle">Fit Track</div>
+    </div>
+
+    <div class="container">
+      <div class="backBar">
+        <div class="backList" onclick="backList()">list</div>
+        <div>&nbsp; > &nbsp;</div>
+        <div>Post</div>
+      </div>
+
+      <div class="titleContainer">
+        <div class="title"><%= showPost[0].title %></div>
+      </div>
+
+      <div class="topContainer">
+        <div class="postId"><%= showPost[0].post_id %></div>
+        <div class="userId"><%= showPost[0].user_id %></div>
+        <div class="date">
+          <%= showPost[0].created_date.toISOString().split('T')[0] %> &nbsp; <%
+          const timeParts = showPost[0].created_time.split(':'); %> <%=
+          timeParts[0] %>:<%= timeParts[1] %>
+        </div>
+        <div class="likeCount">
+          <i class="fa-solid fa-heart fa-2xs" style="color: #ff0000"></i><%=
+          showPost[0].like_count %>
+        </div>
+      </div>
+
+      <div class="constentContainer">
+        <div class="constent"><%= showPost[0].content %></div>
+      </div>
+      <hr />
+
+      <div class="commentContainer">
+        <div class="writeComment">
+          <form name="sendForm" id="sendForm">
+            <textarea
+              rows="1"
+              cols="50"
+              class="bordInputComment"
+              id="bordInputComment"
+              name="bordInputComment"
+              placeholder="Comment"
+            ></textarea>
+
+            <!-- 전송버튼 -->
+            <i
+              class="fa-regular fa-paper-plane fa-lg"
+              style="color: #000000"
+              id="sendButton"
+              onclick="clickSendButton()"
+            ></i>
+          </form>
+        </div>
+        <hr />
+
+        <% if(showPostComment.length == 0 ){%>
+        <span>NO COMMENTS</span>
+        <hr />
+        <%}%> <% for (let i = 0; i < showPostComment.length; i++) { %>
+        <div class="showComment">
+          <i class="fa-solid fa-user fa-lg" style="color: #000000"></i>
+          &nbsp;&nbsp;
+          <div class="signin_user_id">
+            <%= showPostComment[i].signin_user_id%>
+          </div>
+          <span>&nbsp; : &nbsp;</span>
+          <div class="content"><%= showPostComment[i].content%></div>
+        </div>
+        <br />
+        <hr />
+        <%}%>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function backList() {
+      window.location.href = "/list";
+    }
+
+    //전송 클릭했을 경우 데이터베이스에 댓글 저장, 새로고침으로 댓글 추가
+    function clickSendButton() {
+      const Sendbord = document.forms["sendForm"];
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth() + 1;
+      const day = today.getDate();
+      const created_date = `${year}-${month}-${day}`;
+
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      created_time = `${hours}:${minutes}`;
+
+      if (Sendbord.bordInputComment.value != "") {
+        const commentData = {
+          post_id: "<%= showPost[0].post_id%>",
+          signin_user_id: "<%= signinUser[0].signin_id%>",
+          content: Sendbord.bordInputComment.value,
+          created_date: created_date,
+          created_time: created_time,
+          msg: true,
+        };
+        axios({
+          method: "POST",
+          url: "/list/showPost",
+          data: commentData,
+        });
+        //댓글 업로드 후 새로고침(GET방식 실행)
+        alert("댓글 업로드");
+        Sendbord.bordInputComment.value = "";
+        window.location.href =
+          "/list/showPost?postId=<%= showPost[0].post_id%>";
+      } else {
+        alert("댓글을 작성해주세요");
+      }
+    }
+  </script>
+</html>
