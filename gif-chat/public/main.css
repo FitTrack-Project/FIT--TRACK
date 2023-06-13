@@ -1,0 +1,73 @@
+html{
+  width: 400px;
+  margin: 0 auto;
+}
+fieldset{
+  height: 33rem;
+}
+* { box-sizing: border-box;  color: black; background-color: white;}
+.mine { text-align: right; }
+.system { text-align: center; }
+.mine img, .other img {
+  max-width: 300px;
+  display: inline-block;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+th{
+  width: 20rem;
+}
+.join-btn{
+  width: 3rem;
+}
+.mine div:first-child, .other div:first-child { font-size: 12px; }
+.mine div:last-child, .other div:last-child {
+  display: inline-block;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 2px 5px;
+  max-width: 300px;
+}
+#exit-btn { position: absolute; top: 20px; right: 20px; }
+#chat-list { height: 600px; overflow: auto; padding: 5px; }
+#chat-form { text-align: right; }
+label[for='gif'], #chat, #chat-form [type='submit'] {
+  margin-top: 5px;
+  display: inline-block;
+  height: 30px;
+  vertical-align: top;
+}
+#chat{
+  width: 15.5rem;
+}
+label[for='gif'] { cursor: pointer; padding: 5px; border: 1px solid black; }
+#gif { display: none; }
+table, table th, table td {
+  text-align: center;
+  border: 1px solid silver;
+  border-collapse: collapse;
+}
+
+/* footer */
+footer .inner {
+  position:absolute;
+  bottom: 0;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  padding: 0px 5px 20px 5px; 
+  width: 370px;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  font-size: 12px;
+}
+footer .inner a{
+  text-align: center;
+}
+
+footer .inner ul{
+  text-align: center;
+  list-style: none;
+}
