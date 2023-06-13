@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
                 .then((response) => {
                     alert(response.data.message);
-                    window.location.href = "/index";
+                    window.location.href = "/index3";
                 })
                 .catch((error) => {
                     console.error("로그인 실패:", error);
