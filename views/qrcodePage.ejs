@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FitTrack</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/qrcode.css" />
+    </head>
+    <body>
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <title>FitTrack</title>
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <link rel="stylesheet" href="/css/style.css" />
+                <link rel="stylesheet" href="/css/reset.css" />
+                <link rel="stylesheet" href="/css/qrcode.css" />
+                <script>
+                    window.onload = function () {
+                        var qrCodeImg = document.querySelector(".qrImg");
+                        qrCodeImg.style.display = "block";
+                    };
+                </script>
+            </head>
+            <body>
+                <div class="wrap">
+                    <div class="main">
+                        <header>
+                            <a class="logo" href="/">FitTrack</a>
+                            <div class="btn"></div>
+                        </header>
+
+                        <div class="main-menu">
+                            <div id="menu">
+                                <ul class="nav">
+                                    <li><a>칼로리 계산기</a></li>
+                                    <li><a>주변 헬스장 찾기</a></li>
+                                    <li><a href="/qrcodePage">운동 배우기</a></li>
+                                    <% if (loggedIn) { %>
+                                    <li><a href="/auth/logout" id="logoutLink">로그아웃</a></li>
+                                    <% } else { %>
+                                    <li><a href="/auth/login" id="loginLink">로그인</a></li>
+                                    <% } %>
+                                    <li><a href="/auth/register" class="registerBtn">회원가입</a></li>
+                                </ul>
+                                <div class="close"></div>
+                            </div>
+                        </div>
+
+                        <div class="contents">
+                            <h3>QR Code찍고</h3>
+                            <h2>운동하자!</h2>
+                            <form method="POST" action="/deadlift">
+                                <input type="submit" value="완벽한 데드리프트 강의" id="deadlift" class="first" />
+                            </form>
+                            <form method="POST" action="/allinone">
+                                <input type="submit" value="올인원 20분 전신운동" id="allinone" />
+                            </form>
+                            <form method="POST" action="/squat">
+                                <input type="submit" value="스쿼트 할때 꼭 봐야하는 영상" id="squat" />
+                            </form>
+                            <form method="POST" action="/ten">
+                                <input type="submit" value="10분만에 200칼로리 태우기" id="ten" />
+                            </form>
+                            <form method="POST" action="/abs">
+                                <input type="submit" value="서서하는 복근 운동" id="abs" />
+                            </form>
+
+                            <!-- QR 코드 표시 부분 -->
+                            <% if (qrCodeUrl) { %>
+                            <img src="<%= qrCodeUrl %>" class="qrImg" />
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <script src="/js/login.js"></script>
+            </body>
+        </html>
+    </body>
+</html>

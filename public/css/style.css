@@ -1,0 +1,198 @@
+.wrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+}
+.center {
+    width: 640px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(241, 241, 241);
+}
+
+header {
+    width: 90%;
+    height: 50px;
+    position: absolute;
+    top: 10px;
+}
+.logo {
+    font-weight: bold;
+    color: white;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+}
+html.open {
+    overflow: hidden;
+}
+#menu.open {
+    right: 0px;
+}
+.page_cover.open {
+    display: block;
+}
+.btn {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 1;
+    background-image: url("../img/free-icon-menu-5259008.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+.close {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    background-image: url("../img/free-icon-x-button-458595.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.menuOpen {
+    position: relative;
+    top: 0;
+    right: 0;
+}
+
+#menu.open {
+    right: 0px;
+}
+.page_cover.open {
+    display: block;
+}
+
+#menu ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: 30px;
+}
+
+#menu ul.nav li {
+    position: relative;
+    float: left;
+    width: 100%;
+    list-style-type: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#menu ul.nav li a,
+#loginLink,
+.registerBtn {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    text-indent: 20px;
+    text-align: left;
+    color: #526f62;
+    font-weight: bold;
+    text-decoration: none;
+    padding-left: 1rem;
+    font-size: 1.1rem;
+}
+
+#menu ul.nav li a:hover {
+    background: #eee;
+}
+
+#menu ul.nav li .sub_mobile a {
+    position: relative;
+    float: left;
+    display: block;
+    width: 100%;
+    z-index: 999;
+    background: #ccc;
+}
+
+#menu ul.nav li .sub_mobile a:hover {
+    background: #dddddd;
+    color: #fff;
+    z-index: 999;
+}
+
+.main {
+    width: 410px;
+    height: 100%;
+    background: #6c9f88;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-menu {
+    width: 410px;
+    height: 100%;
+    left: 410px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    transition: All 0.2s ease;
+}
+
+#menu {
+    width: 410px;
+    height: 100%;
+    z-index: 10;
+    background-color: white;
+    opacity: 90%;
+    font-weight: bold;
+    padding-top: 80px;
+}
+
+.active {
+    left: 0px;
+}
+
+.contents {
+    width: 100%;
+    height: 580px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.qrcodeBtn {
+    width: 250px;
+    height: 70px;
+    background: #ffffff;
+    line-height: 70px;
+    text-align: center;
+    text-decoration: none;
+    color: #526f62;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+
+.qrcodeBtn:hover {
+    opacity: 80%;
+    transition: 0.3s;
+}
