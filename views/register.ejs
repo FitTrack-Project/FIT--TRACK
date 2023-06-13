@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/register.css" />
+        <link rel="stylesheet" href="/css/reset.css" />
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <div class="center">
+                <form action="/auth/register" method="post">
+                    <a class="title" href="/">FitTrack</a>
+                    <div class="login_wrap">
+                        <div class="left">
+                            <div>
+                                <input type="text" placeholder="아이디를 입력해주세요." id="id" />
+                                <button type="button" class="id_confirm">중복 확인</button>
+                            </div>
+                            <div class="error-message" id="id-error"></div>
+                            <input type="text" placeholder="이름을 입력해주세요." id="name" />
+                            <div class="error-message" id="name-error"></div>
+                            <input type="password" placeholder="비밀번호를 입력해주세요." id="pw" />
+                            <div class="error-message" id="pw-error"></div>
+                            <input type="password" placeholder="비밀번호를 다시 입력해주세요." id="pw_confirm" />
+                            <div class="error-message" id="pw-confirm-error"></div>
+                            <button class="reg_btn" type="submit">회원가입</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="/js/register.js"></script>
+    </body>
+</html>
