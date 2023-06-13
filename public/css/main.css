@@ -1,0 +1,296 @@
+/*COMMON*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #333;
+  background-color: #e1eaea;
+}
+a {
+  text-decoration: none;
+}
+
+img {
+  /* img(인라인 요소) 하단에 Baseline 공백을 제거 */
+  display: block;
+}
+
+
+.view {
+  display: flex;
+  width: 100%;
+  height: 110vh;
+  justify-content: flex-end;
+}
+
+.mobile-view{
+  align-items: center;
+  border: none;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  overflow: auto;
+  width: 100%;
+}
+
+.wrap{
+  height: 690px;
+  position: relative;
+  width: 320px;
+}
+
+.wrap::before{
+  content: "";
+  background-color: #fff;
+  box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+  display: inline-block;
+  height: 62px;
+  width: 100%;
+  border-radius: 46px 46px 0 0;
+  margin-bottom: -3px;
+}
+
+.wrap::after{
+  content: "";
+  background-color: #fff;
+  box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+  display: inline-block;
+  height: 62px;
+  width: 100%;
+  border-radius: 0px 0px 46px 46px;
+  margin-top: 3px;
+}
+
+.before-line{
+  background-color: #eff1f2;
+  border-radius: 1.5px;
+  height: 3px;
+  left: 50%;
+  position: absolute;
+  top: 23px;
+  transform: translateX(-50%) translateY(-50%);
+  width: 24px;
+}
+
+.main-view{
+  align-items: center;
+  background-color: #fff;
+  box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+  height: 556px;
+  max-height: 566px;
+  width: 320px;
+  border: none;
+}
+
+header{
+  position: relative;
+  width: 320px;
+  height: 120px;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 12px;
+}
+.logo-category-btn-box{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0 10px 0;
+}
+.logo-category-btn-box .logo img{
+  width: 150px;
+  height: 70px;
+}
+
+.category-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.category-btn-plus{
+  height: 30px;
+  width: 30px;
+  margin: auto;
+  position: relative;
+}
+
+.category-btn-plus .material-symbols-outlined{
+  font-size: 30px;
+}
+
+.categoty-menu{
+  background-color: red;
+  position: absolute;
+  top: 0;
+  left: -16px;
+  width: 320px;
+  height: 556px;
+  z-index: 77;
+  visibility: hidden;
+  transition: left ease 2s;
+}
+
+.category-menu .slide-in {
+  visibility: visible;
+}
+
+
+/* 위쪽 슬라이더 */
+header .notice-line .inner {
+  height: 30px;
+  display: flex;
+}
+header .notice-line .inner__left .swiper-container {
+  height: 30px;
+  flex-grow: 1;
+}
+header .notice-line .inner__left .swiper-slide {
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+header .notice-line .inner__left .swiper-slide a {
+  color: #333;
+}
+
+header .notice-line .inner__left .notice-line__more .material-icons {
+  color: #fff;
+  font-size: 30px;
+}
+
+/* main img log */
+
+main {
+  position: relative;
+}
+
+main .Logo {
+  margin: 0 auto;
+}
+
+main .text {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+/* center_select_box */
+
+main .center_select_box {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 1rem;
+  height: 34px;
+  width: 90%;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  background-color: rgb(180, 180, 180);
+}
+
+main .center_select_box div {
+  position: absolute;
+  color: #777;
+  font-size: 12px;
+  height: 12px;
+  top: 0;
+  bottom: 0;
+  left: 1rem;
+  margin: auto;
+}
+
+main .center_select_box .material-icons {
+  height: 24px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+}
+
+/*AWARDS*/
+.awards {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: #272727;
+}
+.awards .swiper-container {
+  width: 100%;
+  height: 100px;
+}
+.awards .swiper-container .swiper-wrapper .swiper-slide img {
+  width: inherit;
+  height: inherit;
+}
+/* .awards .swiper-prev,
+.awards .swiper-next {
+  width: 42px;
+  height: 42px;
+  outline: none;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: .3;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .4s;
+}
+.awards .swiper-prev {
+  left: -100px;
+}
+.awards .swiper-next {
+    right: -100px;
+  }
+  .awards .swiper-prev:hover,
+  .awards .swiper-next:hover {
+    background-color: #fff;
+    color: #333;
+  } */
+
+/* 뭐를 넣어야 할지 고민 */
+main .dddd {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 90%;
+  height: 150px;
+  border: 1px solid black;
+}
+
+/* footer */
+footer .inner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 75px;
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  justify-content:space-around;
+  /* justify-content: center; */
+  align-items: center;
+  font-size: 12px;
+}
+
+footer .inner ul {
+  text-align: center;
+}
