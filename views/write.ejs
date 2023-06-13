@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <style>
+    /* ----------고정 상단바 ---------------------------------------------- */
+    .defaultSetting {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .mainTitle {
+      background-color: rgb(182, 182, 182);
+      padding: 20px;
+      text-align: center;
+      font-size: 40px;
+    }
+
+    /* --------게시물 추가--------------------------------------------------- */
+    .postAll {
+      margin-top: 160px; /*상단바와 입력 창 간의 간격 조정하기*/
+    }
+
+    /* 게시글 추가의 top bar */
+    .bordTopbar {
+      background-color: rgb(71, 71, 75);
+      margin-top: 80px;
+      margin-left: 50px;
+      margin-right: 50px;
+      /* padding-bottom: 15px; */
+      height: 7vh;
+      color: white;
+      border-bottom: 1px solid black;
+      display: flex; /* Flexbox 적용 */
+      justify-content: space-between; /* 좌우 정렬 */
+      align-items: center; /* 세로 가운데 정렬 */
+    }
+
+    .userContainer {
+      display: flex;
+      align-items: center;
+    }
+
+    .bordInput {
+      background-color: rgb(245, 27, 27);
+      margin-left: 50px;
+      margin-right: 50px;
+      height: 300px;
+      color: white;
+      display: flex; /* Flexbox 적용 */
+      justify-content: center; /* 가로 가운데 정렬 */
+      align-items: center; /* 세로 가운데 정렬 */
+    }
+
+    .bordInputMain {
+      width: 90%;
+      height: 80%;
+      background-color: rgb(87, 113, 102);
+    }
+    .bordInputTitle {
+      width: 99%;
+      height: 20%;
+      resize: none;
+      /* box-sizing: border-box; */
+    }
+
+    .bordInputContent {
+      width: 99%;
+      height: 80%;
+      resize: none;
+      /* box-sizing: border-box; */
+    }
+
+    /* 게시 버튼 (upload)*/
+    .postUploadBox {
+      margin-left: 50px;
+      margin-right: 50px;
+      background-color: rgb(231, 231, 231);
+      display: flex;
+      justify-content: flex-end; /* 변경: 오른쪽 정렬 */
+      align-items: flex-start;
+    }
+
+    .postUpload {
+      background-color: white;
+      color: black;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: 5px;
+    }
+    .postUpload:hover {
+      background-color: rgb(67, 64, 64);
+      color: white;
+    }
+  </style>
+  <body>
+    <div class="defaultSetting">
+      <div class="mainTitle">Fit Track</div>
+    </div>
+    <!-- 게시물 & 입력창 -->
+    <div class="postAll">
+      <!-- "쓰기"를 눌렀을 때 나오는 창 -->
+      <form name="bord">
+        <div class="writeBord">
+          <!-- 게시물 쓰기 창의 topbar -->
+          <div class="bordTopbar">
+            <div class="userContainer">
+              <div class="userIcon">
+                <i class="fa-solid fa-user fa-xl" style="color: #ffff"></i>
+              </div>
+              <div class="userId">
+                &nbsp;&nbsp;user : <%= signinUser[0].signin_id%>
+              </div>
+            </div>
+            <!-- 실시간 시간 가져오기 -->
+            <div class="timeNow">&nbsp;&nbsp;현재 시간</div>
+          </div>
+
+          <!-- title, content의 input창  -->
+          <div class="bordInput">
+            <div class="bordInputMain">
+              <div>제목</div>
+              <textarea
+                class="bordInputTitle"
+                id="bordInputTitle"
+                name="bordInputTitle"
+                placeholder="Title"
+              ></textarea>
+
+              <br />
+              <div>내용</div>
+              <textarea
+                class="bordInputContent"
+                id="bordInputContent"
+                name="bordInputContent"
+                placeholder="Write Here"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="postUploadBox">
+            <button type="button" class="postUpload" onclick="postUpload()">
+              게시
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script>
+    const bord = document.forms["bord"];
+
+    //게시 눌렀을 경우
+    function postUpload() {
+      if (bordInputTitle.value == "" || bordInputContent.value == "") {
+        alert("모든 값을 입력하세요");
+        return;
+      } else {
+        //게시 눌렀을 경우 axios 사용해서 input에 입력된 내용들을 model로 보내야함(글 작성 칸에 있는 value값 다 없애버리기)
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1;
+        const day = today.getDate();
+        const created_date = `${year}-${month}-${day}`;
+
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        created_time = `${hours}:${minutes}`;
+
+        const writeData = {
+          user_id: "<%= signinUser[0].signin_id%>",
+          title: bord.bordInputTitle.value,
+          content: bord.bordInputContent.value,
+          created_date: created_date,
+          created_time: created_time,
+          like_count: 0,
+        };
+        axios({
+          method: "POST",
+          url: "/write",
+          data: writeData,
+        });
+        alert("게시글 업로드");
+        window.location.href = "/";
+        //버튼 눌리면 input태그 비워주기
+        bord.bordInputTitle.value = "";
+        bord.bordInputContent.value = "";
+      }
+    }
+  </script>
+</html>

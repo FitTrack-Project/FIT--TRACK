@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <style>
+      /* ----------고정 상단바 ---------------------------------------------- */
+      .defaultSetting {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      .mainTitle {
+        background-color: rgb(182, 182, 182);
+        padding: 20px;
+        text-align: center;
+        font-size: 40px;
+      }
+      .buttonBar {
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .buttonBar > .mypost,
+      .buttonBar > .write,
+      .buttonBar > .list {
+        padding: 10px;
+        cursor: pointer;
+      }
+      .buttonBar > .searchContainer {
+        padding: 10px;
+      }
+      .buttonBar > .mypost:hover,
+      .buttonBar > .write:hover,
+      .buttonBar > .list:hover {
+        background-color: white;
+        color: black;
+      }
+
+      /* ----listTopBar------------------------------------------------------- */
+      .listContainer {
+        margin-top: 180px;
+      }
+      .listTopBar {
+        background-color: rgb(124, 173, 155);
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+      }
+      .listTopBar > .number {
+        width: 10%;
+      }
+      .listTopBar > .title {
+        width: 50%;
+      }
+      .listTopBar > .writer {
+        width: 15%;
+      }
+      .listTopBar > .date {
+        width: 20%;
+      }
+      .listTopBar > .like {
+        width: 5%;
+      }
+
+      /* -------newList-------------------------------------------------- */
+
+      .newList {
+        background-color: rgba(187, 187, 187, 0.364);
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+      }
+      .newList:hover {
+        background-color: gray;
+        cursor: pointer;
+      }
+      .newList > .newNumber {
+        width: 10%;
+      }
+      .newList > .newTitle {
+        width: 50%;
+      }
+      .newList > .newTitle:hover {
+        text-decoration: underline double;
+      }
+      .newList > .newWriter {
+        width: 15%;
+      }
+      .newList > .newDate {
+        width: 20%;
+      }
+      .newList > .newLike {
+        width: 5%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- --------고정 topBar-------------------------------------------- -->
+    <div class="defaultSetting">
+      <div class="mainTitle">Fit Track</div>
+      <div class="buttonBar">
+        <div class="mypost" onclick="mypostButton()">내 게시물</div>
+        <div class="write" onclick="writeButton()">쓰기</div>
+        <div class="list" onclick="mainButton()">TIME LINE</div>
+        <div class="searchContainer">
+          <input
+            type="text"
+            class="search"
+            id="search"
+            name="search"
+            autocomplete="off"
+          />
+          <button id="searchButton" onclick="search()">검색</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- --------main---------------------------------------- -->
+
+    <div class="listContainer">
+      <div class="listTopBar">
+        <div class="number"></div>
+        <div class="title">TITLE</div>
+        <div class="writer">WRITER</div>
+        <div class="date">DATE</div>
+        <div class="like">LIKE</div>
+      </div>
+
+      <% for (let i = 0; i < searchAllData.length; i++) { %>
+      <div
+        class="newList"
+        id="newList-<%= searchAllData[i].post_id%>"
+        onclick="showPost(this)"
+      >
+        <div class="newNumber"><%= searchAllData.length-i%></div>
+        <div class="newTitle"><%= searchAllData[i].title%></div>
+        <div class="newWriter"><%= searchAllData[i].user_id%></div>
+        <div class="newDate">
+          <%= searchAllData[i].created_date.toISOString().split('T')[0] %>
+          &nbsp; <% const timeParts = searchAllData[i].created_time.split(':');
+          %> <%= timeParts[0] %>:<%= timeParts[1] %>
+        </div>
+        <div class="newLike"><%= searchAllData[i].like_count%></div>
+      </div>
+      <%}%>
+    </div>
+  </body>
+
+  <script>
+    function showPost(element) {
+      const postId = element.id.split("-")[1];
+      window.location.href = `/list/showPost?postId=${postId}`;
+    }
+
+    function writeButton() {
+      window.location.href = "/write";
+    }
+
+    function mainButton() {
+      window.location.href = "/";
+    }
+
+    function mypostButton() {
+      const signinId = "<%= signinUser[0].signin_id %>";
+      window.location.href = `/myPost?signinId=${signinId}`;
+    }
+
+    function search() {
+      //검색 눌렀을 경우 데이터 베이스에서 일치하는 단어 있는 쿼리문 가져오기
+      const searchInput = document.getElementById("search");
+      if (!searchInput.value) {
+        alert("검색어를 입력하세요");
+      } else {
+        window.location.href = `/search?searchInput=${searchInput.value}`;
+      }
+    }
+  </script>
+</html>

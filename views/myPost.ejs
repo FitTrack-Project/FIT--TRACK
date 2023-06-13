@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/693f483c38.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <style>
+      /* ----------고정 상단바 ---------------------------------------------- */
+      .defaultSetting {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      .mainTitle {
+        background-color: rgb(182, 182, 182);
+        padding: 20px;
+        text-align: center;
+        font-size: 40px;
+      }
+      .buttonBar {
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+      }
+      .buttonBar > .goHome:hover {
+        cursor: pointer;
+        background-color: rgba(166, 166, 166, 0.5);
+        /* color: black; */
+      }
+      /* -------changeButton------------------------------------------------------------------------ */
+      .changeButton {
+        margin-top: 130px;
+        display: flex;
+        padding: 1.5vw;
+        justify-content: flex-end;
+      }
+      .changeButton > .correctionButton:hover {
+        cursor: pointer;
+        background-color: rgba(166, 166, 166, 0.5);
+      }
+      .changeButton > .deleteButton:hover {
+        cursor: pointer;
+        background-color: rgba(166, 166, 166, 0.5);
+      }
+
+      /* ----listTopBar------------------------------------------------------- */
+      .listContainer {
+      }
+      .listTopBar {
+        background-color: rgb(124, 173, 155);
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+      }
+      .listTopBar > .number {
+        width: 10%;
+      }
+      .listTopBar > .title {
+        width: 65%;
+      }
+      .listTopBar > .date {
+        width: 20%;
+      }
+      .listTopBar > .like {
+        width: 5%;
+      }
+
+      /* -------newList-------------------------------------------------- */
+      .newList {
+        background-color: rgba(187, 187, 187, 0.364);
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+      }
+      .newList:hover {
+        background-color: gray;
+        cursor: pointer;
+        text-decoration: underline double;
+      }
+      .newList > .selectPost {
+        width: 10%;
+      }
+      .newList > .newTitle {
+        width: 65%;
+      }
+      .newList > .newDate {
+        width: 20%;
+      }
+      .newList > .newLike {
+        width: 5%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- --------고정 topBar-------------------------------------------- -->
+    <div class="defaultSetting">
+      <div class="mainTitle">Fit Track</div>
+      <div class="buttonBar">
+        <div class="goHome">
+          <i
+            class="fa-solid fa-house"
+            style="color: #ffffff"
+            onclick="goHome()"
+          ></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------------수정, 삭제 버튼---------------------------------------------------------->
+    <div class="changeButton">
+      <div class="correctionButton">
+        <i
+          id="correctionButton"
+          class="fa-solid fa-pen-to-square fa-lg"
+          style="color: #080808"
+          onclick="clickCorrectionButton()"
+        ></i>
+      </div>
+      &nbsp;
+      <div class="deleteButton">
+        <i
+          id="deleteButton"
+          class="fa-solid fa-trash-can fa-lg"
+          style="color: #000000"
+          onclick="clickDeleteButton()"
+        ></i>
+      </div>
+    </div>
+
+    <!-- ---------------main---------------------------------------------------------->
+    <div class="listContainer">
+      <div class="listTopBar">
+        <div class="number"></div>
+        <div class="title">TITLE</div>
+        <div class="date">DATE</div>
+        <div class="like">LIKE</div>
+      </div>
+
+      <!-- 내 게시물만 가져오기 -->
+      <% for (let i = 0; i < myPostData.length; i++) { %>
+      <div class="newList">
+        <form name="selectPost">
+          <div class="selectPost" id="selectPost-<%= myPostData[i].post_id%>">
+            <input
+              type="checkbox"
+              id="selectPost-<%= myPostData[i].post_id%>"
+            />
+          </div>
+        </form>
+        <div
+          class="newTitle"
+          id="newTitle-<%= myPostData[i].post_id%>"
+          onclick="showPost(this)"
+        >
+          <%= myPostData[i].title%>
+        </div>
+        <div class="newDate">
+          <%= myPostData[i].created_date.toISOString().split('T')[0] %> &nbsp;
+          <% const timeParts = myPostData[i].created_time.split(':'); %> <%=
+          timeParts[0] %>:<%= timeParts[1] %>
+        </div>
+        <div class="newLike"><%= myPostData[i].like_count%></div>
+      </div>
+      <%}%>
+    </div>
+  </body>
+  <script>
+    const correctionButton = document.querySelector("#correctionButton");
+    const deleteButton = document.querySelector("#deleteButton");
+    let checkedCheckboxes = [];
+    let arrPostId = [];
+    let postId;
+
+    // home으로 가기
+    function goHome() {
+      window.location.href = "/";
+    }
+
+    function showPost(element) {
+      const postId = element.id.split("-")[1];
+      window.location.href = `/list/showPost?postId=${postId}`;
+    }
+
+    function CheckedCheckboxes() {
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(function (checkbox) {
+        postId = checkbox.id.split("-")[1];
+        if (checkbox.checked) {
+          checkedCheckboxes.push(checkbox);
+          arrPostId.push(parseInt(postId));
+        } else {
+          var index = arrPostId.indexOf(parseInt(postId));
+          if (index > -1) {
+            arrPostId.splice(index, 1);
+          }
+        }
+      });
+    }
+
+    // 게시물 수정
+    function clickCorrectionButton() {
+      CheckedCheckboxes();
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      var postIds = []; // 체크된 태그의 ID들을 담을 배열
+      checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+          var postId = checkbox.id.split("-")[1];
+          postIds.push(postId); // 체크된 태그의 ID를 배열에 추가
+        }
+      });
+      if (checkedCheckboxes.length === 0) {
+        alert("수정할 게시물을 체크해 주세요");
+      } else if (checkedCheckboxes.length !== 1) {
+        alert("하나의 게시글만 체크해 주세요");
+        checkedCheckboxes.forEach((element) => {
+          element.checked = false;
+        });
+        checkedCheckboxes = [];
+      } else {
+        const signinId = "<%= signinId %>";
+        const postId = postIds[0]; // 체크된 태그의 ID 배열의 첫 번째 값
+        window.location.href = `/myPost/edit?post_id=${postId}&signinId=${signinId}`;
+      }
+    }
+
+    // 게시물 삭제
+    function clickDeleteButton() {
+      CheckedCheckboxes();
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(function (checkbox) {
+        postId = checkbox.id.split("-")[1];
+      });
+      if (checkedCheckboxes.length === 0) {
+        alert("삭제할 게시물을 체크해 주세요");
+      } else {
+        const signin_id = "<%= signinId %>";
+        axios({
+          method: "DELETE",
+          url: "/myPost/del",
+          data: {
+            // 삭제할 post_id
+            post_id: arrPostId,
+            signin_id: signin_id,
+          },
+        }).then((res) => {
+          if (res.data.result) {
+            alert("삭제완료");
+            const signinId = "<%= signinId %>";
+            window.location.href = `/myPost?signinId=${signinId}`;
+          }
+        });
+      }
+    }
+  </script>
+</html>
