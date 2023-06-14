@@ -145,15 +145,14 @@ body {
     }
 }
 
-
 .view {
     display: flex;
     width: 100%;
     height: 110vh;
     justify-content: flex-end;
-  }
-  
-  .mobile-view{
+}
+
+.mobile-view {
     align-items: center;
     border: none;
     display: flex;
@@ -161,37 +160,37 @@ body {
     justify-content: center;
     overflow: auto;
     width: 100%;
-  }
-  
-  .wrap{
+}
+
+.wrap {
     height: 690px;
     position: relative;
     width: 320px;
-  }
-  
-  .wrap::before{
+}
+
+.wrap::before {
     content: "";
     background-color: #fff;
-    box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+    box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
     display: inline-block;
     height: 62px;
     width: 100%;
     border-radius: 46px 46px 0 0;
     margin-bottom: -3px;
-  }
-  
-  .wrap::after{
+}
+
+.wrap::after {
     content: "";
     background-color: #fff;
-    box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+    box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
     display: inline-block;
     height: 62px;
     width: 100%;
     border-radius: 0px 0px 46px 46px;
     margin-top: 3px;
-  }
-  
-  .before-line{
+}
+
+.before-line {
     background-color: #eff1f2;
     border-radius: 1.5px;
     height: 3px;
@@ -200,20 +199,20 @@ body {
     top: 23px;
     transform: translateX(-50%) translateY(-50%);
     width: 24px;
-  }
-  
-  .main-view{
+}
+
+.main-view {
     align-items: center;
     background-color: #fff;
-    box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+    box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
     height: 556px;
     max-height: 566px;
     width: 320px;
     border: none;
-  }
-  
-  .header {
-    position:absolute;
+}
+
+.header {
+    position: absolute;
     text-align: center;
     background: linear-gradient(60deg, rgb(0, 0, 0) 0%, rgb(209, 209, 209) 100%);
     color: white;
@@ -264,26 +263,26 @@ body {
 }
 
 /* Animation */
-.parallax>use {
-    animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
 }
 
-.parallax>use:nth-child(1) {
+.parallax > use:nth-child(1) {
     animation-delay: -2s;
     animation-duration: 7s;
 }
 
-.parallax>use:nth-child(2) {
+.parallax > use:nth-child(2) {
     animation-delay: -3s;
     animation-duration: 10s;
 }
 
-.parallax>use:nth-child(3) {
+.parallax > use:nth-child(3) {
     animation-delay: -4s;
     animation-duration: 13s;
 }
 
-.parallax>use:nth-child(4) {
+.parallax > use:nth-child(4) {
     animation-delay: -5s;
     animation-duration: 20s;
 }
