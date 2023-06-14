@@ -1,7 +1,33 @@
 <!-- login.ejs -->
 <!DOCTYPE html>
 <html lang="ko">
-
+    <body>
+        <form id="loginForm" class="loginForm">
+            <div class="loginup">
+                <a class="title" href="/">FitTrack</a>
+                <div class="form-holder">
+                    <input
+                        type="text"
+                        placeholder="아이디를 입력해주세요."
+                        id="username"
+                        name="username"
+                        class="login__input"
+                    />
+                    <input
+                        type="password"
+                        placeholder="비밀번호를 입력해주세요."
+                        id="pw"
+                        name="pw"
+                        class="login__input"
+                    />
+                </div>
+                <button type="button" class="login_btn" onclick="login()">로그인</button>
+            </div>
+            <div class="login slide-up">
+                <div class="center">
+                    <a class="register_btn" href="auth/register">회원가입</a>
+                </div>
+=======
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
