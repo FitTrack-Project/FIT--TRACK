@@ -49,7 +49,7 @@ function login() {
 }
 
 // 로그아웃
-document.addEventListener("DOMContentLoaded", () => {
+function logout() {
     const logoutLink = document.querySelector("#logoutLink");
 
     if (logoutLink) {
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
 
             axios
-                .get("/auth/logout")
+                .get("auth/logout")
                 .then((response) => {
                     alert(response.data.message);
                     deleteAllCookies();
@@ -69,9 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         });
     }
+}
 
-    // 쿠키를 삭제하는 함수
-    function deleteAllCookies() {
-        document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-    }
-});
+// 쿠키를 삭제하는 함수
+function deleteAllCookies() {
+    document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+}

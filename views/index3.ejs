@@ -38,7 +38,6 @@
     <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
     <!--ScrollMagic-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
-
     <script defer src="./js/main.js"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -185,7 +184,11 @@
                                 <span class="material-symbols-outlined">
                                     <i class="fa-solid fa-user" style="color: #000000"></i>
                                 </span>
-                                <div>MyPage</div>
+                                <% if (loggedIn) { %>
+                                    <li><button onclick="logout()" id="logoutLink" style="border:none; background: none;">Logout</button></li>
+                                    <% } else { %>
+                                    <li><button onclick="login()" id="loginLink">Login</button></li>
+                                <% } %>
                             </ul>
                         </div>
                     </footer>
@@ -195,7 +198,7 @@
 
     </div>
 </body>
-
+  <script src="/js/login.js"></script>
 <script>
     const categoryBtn = document.querySelector('.category-btn');
     const categoryMenu = document.querySelector('.categoty-menu');

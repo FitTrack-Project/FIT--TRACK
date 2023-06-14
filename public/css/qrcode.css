@@ -73,7 +73,7 @@ body {
 
 .main-view {
     align-items: center;
-    background-color: #f5f5f5;
+    background-color: #ededed;
     box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
     height: 556px;
     max-height: 566px;
@@ -185,7 +185,7 @@ body {
     letter-spacing: 0.3rem;
     font-weight: 900;
     margin-bottom: 30px;
-    margin-top: -118px;
+    margin-top: -135px;
 }
 
 .sub_title {
@@ -218,7 +218,7 @@ form {
 .health {
     width: 260px;
     height: 40px;
-    background: rgb(84, 87, 141);
+    background: rgb(84, 90, 114);
     border-radius: 5px;
     text-align: center;
     line-height: 40px;
