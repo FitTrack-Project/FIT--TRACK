@@ -22,7 +22,7 @@ app.use(
 );
 app.use("/auth", authRoutes);
 app.get("/", (req, res) => {
-  res.render("login", { loggedIn: req.session.user ? true : false });
+  res.render("index3", { loggedIn: req.session.user ? true : false });
 });
 app.use("/", require("./routes/qrcode"));
 app.listen(PORT, () => {

@@ -18,7 +18,7 @@ const defaultRouter = require("./routes/postBord");
 app.use("/", defaultRouter);
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index3");
 });
 
 app.get("*", (req, res) => {
