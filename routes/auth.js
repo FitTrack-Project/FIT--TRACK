@@ -16,6 +16,5 @@ router.post("/login", authController.loginUser);
 
 // 로그아웃 처리
 router.get("/logout", authController.logout);
-router.get("/auth/logout", authController.logout);
 
 module.exports = router;

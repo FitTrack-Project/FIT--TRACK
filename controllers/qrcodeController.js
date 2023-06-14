@@ -103,5 +103,5 @@ exports.playVideo = (req, res) => {
 };
 
 exports.index3 = (req, res) => {
-    res.render("index3");
+    res.render("index3", { loggedIn: true, qrCodeUrl: "", message: null });
 };

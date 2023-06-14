@@ -107,10 +107,11 @@ exports.logout = (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             console.error("세션 삭제 실패:", err);
-            res.status(500).json({ message: "로그아웃에 실패했습니다." });
+
+            res.send({ message: "로그아웃에 실패했습니다." });
         } else {
             // 로그아웃 성공 메시지를 응답으로 전송
-            res.status(200).json({ message: "로그아웃 되셨습니다." });
+            res.send({ message: "로그아웃 되셨습니다." });
         }
     });
 };
