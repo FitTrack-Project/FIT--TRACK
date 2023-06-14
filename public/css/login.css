@@ -2,6 +2,7 @@
 html,
 body {
     position: relative;
+    width: 100%;
     min-height: 100vh;
     background-color: #E1E8EE;
     display: flex;
@@ -21,9 +22,8 @@ body {
 }
 .loginForm {
     background-color: #222;
-    border-radius: 15px;
-    height: 550px;
-    width: 350px;
+    height: 100%;
+    width: 100%;
     position: relative;
     overflow: hidden;
     &::after {
@@ -130,14 +130,12 @@ body {
         }
     }
 }
-
 .view {
     display: flex;
     width: 100%;
     height: 110vh;
     justify-content: flex-end;
 }
-
 .mobile-view {
     align-items: center;
     border: none;
@@ -147,13 +145,11 @@ body {
     overflow: auto;
     width: 100%;
 }
-
 .wrap {
     height: 690px;
     position: relative;
     width: 320px;
 }
-
 .wrap::before {
     content: "";
     background-color: #fff;
@@ -164,7 +160,6 @@ body {
     border-radius: 46px 46px 0 0;
     margin-bottom: -3px;
 }
-
 .wrap::after {
     content: "";
     background-color: #fff;
@@ -175,9 +170,8 @@ body {
     border-radius: 0px 0px 46px 46px;
     margin-top: 3px;
 }
-
 .before-line {
-    background-color: #eff1f2;
+    background-color: #EFF1F2;
     border-radius: 1.5px;
     height: 3px;
     left: 50%;
@@ -186,7 +180,6 @@ body {
     transform: translateX(-50%) translateY(-50%);
     width: 24px;
 }
-
 .main-view {
     align-items: center;
     background-color: #fff;
@@ -196,7 +189,6 @@ body {
     width: 320px;
     border: none;
 }
-
 .header {
     position: absolute;
     text-align: center;
@@ -205,7 +197,6 @@ body {
     width: 100%;
     height: 110vh;
 }
-
 .logo {
     width: 50px;
     fill: white;
@@ -213,14 +204,12 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
-
 .inner-header {
     height: 65vh;
     width: 100%;
     margin: 0;
     padding: 0;
 }
-
 .flex {
     /*Flexbox for containers*/
     display: flex;
@@ -228,7 +217,6 @@ body {
     align-items: center;
     text-align: center;
 }
-
 .waves {
     position: absolute;
     bottom: 0;
@@ -240,45 +228,42 @@ body {
     min-height: 150px;
     max-height: 300px;
 }
-
 .content {
     position: relative;
     height: 20vh;
     text-align: center;
     background-color: white;
 }
-
 /* Animation */
 .parallax > use {
     animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
 }
-
 .parallax > use:nth-child(1) {
     animation-delay: -2s;
     animation-duration: 7s;
 }
-
 .parallax > use:nth-child(2) {
     animation-delay: -3s;
     animation-duration: 10s;
 }
-
 .parallax > use:nth-child(3) {
     animation-delay: -4s;
     animation-duration: 13s;
 }
-
 .parallax > use:nth-child(4) {
     animation-delay: -5s;
     animation-duration: 20s;
 }
-
 @keyframes move-forever {
     0% {
         transform: translate3d(-90px, 0, 0);
     }
-
     100% {
         transform: translate3d(85px, 0, 0);
     }
 }
+
+
+
+
+

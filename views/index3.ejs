@@ -45,118 +45,151 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
 
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+
+
 <body>
+
+    <!--Hey! This is the original version
+of Simple CSS Waves-->
+    <div class="header">
+        <!--Content before waves-->
+        <div class="inner-header flex">
+        </div>
+        <!--Waves Container-->
+        <div>
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 180 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave"
+                        d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                </g>
+            </svg>
+        </div>
+        <!--Waves end-->
+    </div>
+    <!--Header ends-->
+    <!--Content starts-->
+    <!--Content ends-->
     <div class="view">
         <div class="mobile-view">
             <div class="wrap">
                 <div class="before-line"></div>
                 <div class="main-view">
-                    <header>
-                        <!--NOTICE LINE-->
-                        <div class="notice-line">
-                            <div class="inner">
-                                <div class="inner__left">
-                                    <div class="swiper-container">
-                                        <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <a href="javascript:void(0)">FitTrack 검증된 어플 당신에 파트너</a>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <a href="javascript:void(0)">누적 30,000개 달성!!!</a>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <a href="javascript:void(0)">우리 몸 FitTrack과 함께 하세요</a>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <a href="javascript:void(0)">운동부터 식단까지 챙기세요</a>
+                    <div class="main-view-wrap">
+                        <header>
+                            <!--NOTICE LINE-->
+                            <div class="notice-line">
+                                <div class="inner">
+                                    <div class="inner__left">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <a href="javascript:void(0)">FitTrack Validated App Your Partner</a>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <a href="javascript:void(0)">Accumulated 30,000!!!</a>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <a href="javascript:void(0)">Please join FitTrack</a>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <a href="javascript:void(0)">From exercise to diet Good!!</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="logo-category-btn-box">
-                            <div class="logo">
-                                <img src="./images/Logo.png" alt="ffd">
-                            </div>
-                            <div class="welcomeUser">ooo님 환영합니다</div>
-                        </div>
-                        <div class="categoty-menu"></div>
-                    </header>
-
-                    <main>
-                        <div class="scrollControl">
-                            <div class="center_select_box">
-                                <div>지역, 센터 검색</div>
-                                <span class="material-icons">search</span>
-                            </div>
-
-                            <div class="text">
-                                <p style="color: purple;font-weight: bolder;">우리 변화해 볼까?</p>
-                                <p>지금부터 운동 시작</p>
-                            </div>
-
-
-                            <div class="middleButton">
-                                <div class="qrButton">
-                                    <i class="fa-solid fa-qrcode" style="color: #000000;"></i> QR
+                            <div class="logo-category-btn-box">
+                                <div class="logo">
+                                    <img src="./images/Logo.png" alt="ffd">
                                 </div>
-                                <div class="calc">칼로리 계산기</div>
+                                <div class="welcomeUser">ooo님 환영합니다</div>
                             </div>
+                            <div class="categoty-menu"></div>
+                        </header>
+
+                        <main>
+                            <div class="scrollControl">
+                                <div class="center_select_box">
+                                    <div>지역, 센터 검색</div>
+                                    <span class="material-icons">search</span>
+                                </div>
+
+                                <div class="text">
+                                    <p style="color: purple;font-weight: bolder;">우리 변화해 볼까?</p>
+                                    <p>지금부터 운동 시작</p>
+                                </div>
 
 
+                                <div class="middleButton">
+                                    <button id="foot">
+                                        <button class="button button-os"><a href="#"><i class="fa-solid fa-qrcode"
+                                                    style="color: #000000;"></i> QR</a></button>
+                                    </button>
+                                    <button id="foot2">
+                                        <button class="button button-os2" style="right: 0;"><a
+                                                href="#">calorie</a></button>
+                                    </button>
+                                </div>
 
+                                <!-- 칼로리 테이블 -->
 
-                            <div class="dietMenagement">
-                                <div class="dietTitle">식단 관리</div>
-                                <div>
-                                    <table class="bordered-table">
-                                        <tr>
-                                            <th>FOOD</th>
-                                            <th>CALORIE</th>
+                                <div class="ptable">
+                                    <h1 class="headin" style="color: black;">Today's calories</h1>
+                                    <table>
+                                        <tr class="col">
+                                            <th>Food</th>
+                                            <th>Calories</th>
                                         </tr>
-                                        <tr>
-                                            <td>음식 추가 (사과)</td>
-                                            <td>칼로리(400kcal)</td>
+                                        <tr class="wpos">
+                                            <td>Goals</td>
+                                            <td>2200cal</td>
                                         </tr>
-                                        <tr>
-                                            <td>음식 추가 (감자)</td>
-                                            <td>칼로리(150kcal)</td>
+                                        <tr class="wpos">
+                                            <td>Today</td>
+                                            <td>1700cal</td>
                                         </tr>
-                                        <tr>
-                                            <td colspan="2">칼로리 총 합</td>
+                                        <tr class="pos">
+                                            <td>Result</td>
+                                            <td>500cal</td>
                                         </tr>
                                     </table>
                                 </div>
-                            </div>
-
-                            <div class="awards">
-                                <div class="inner">
-                                    <div class="swiper-container">
-                                        <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <img src="./images/SCAN_20230508_172149588.jpeg" alt="" />
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="./images/images.jpeg" alt="" />
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="./images/다운로드.jpeg" alt="" />
+                                <div class="awards">
+                                    <div class="inner">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <img src="./images/SCAN_20230508_172149588.jpeg" alt="" />
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="./images/images.jpeg" alt="" />
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="./images/다운로드.jpeg" alt="" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- <div class="swiper-prev">
+                                        <!-- <div class="swiper-prev">
                                                         <span class="material-icons">arrow_back</span>
                                                     </div>
                                                     <div class="swiper-next">
                                                         <span class="material-icons">arrow_forward</span>
                                                     </div> -->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </main>
-
+                        </main>
+                    </div>
                     <footer>
                         <div class="inner">
                             <ul class="home">
@@ -173,7 +206,7 @@
                                     <div>Bord</div>
                                 </ul>
                             </a>
-                            <a href="http://localhost:8000/chat">
+                            <a href="http://localhost:8005/">
                                 <ul class="community-chat">
                                     <span class="material-symbols-outlined">
                                         <i class="fa-solid fa-comment" style="color: #000000"></i>
