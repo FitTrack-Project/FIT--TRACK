@@ -5,42 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/693f483c38.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <title>Document</title>
   </head>
   <style>
-    /* ----------고정 상단바 ---------------------------------------------- */
-    .defaultSetting {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+    /* -------- ---------------------------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-
-    .mainTitle {
-      background-color: rgb(182, 182, 182);
-      padding: 20px;
-      text-align: center;
-      font-size: 40px;
+    body {
+      font-family: "Nanum Gothic", sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: #333;
+      background-color: #e1eaea;
     }
 
     /* --------게시물 추가--------------------------------------------------- */
     .postAll {
-      margin-top: 160px; /*상단바와 입력 창 간의 간격 조정하기*/
+      /* 폰트 지정하기  */
+    }
+    .postWriteFont {
+      font-size: large;
+      font-weight: bolder;
+      color: purple;
+      display: flex;
+      justify-content: center;
+      padding-top: 4vw;
+      padding-bottom: 4vw;
     }
 
     /* 게시글 추가의 top bar */
     .bordTopbar {
       background-color: rgb(71, 71, 75);
-      margin-top: 80px;
-      margin-left: 50px;
-      margin-right: 50px;
+      /* margin-top: 80px; */
+      margin-left: 2vw;
+      margin-right: 2vw;
       /* padding-bottom: 15px; */
-      height: 7vh;
+      height: 5vh;
       color: white;
       border-bottom: 1px solid black;
       display: flex; /* Flexbox 적용 */
       justify-content: space-between; /* 좌우 정렬 */
       align-items: center; /* 세로 가운데 정렬 */
+    }
+    .userIcon {
+      margin-left: 10px;
     }
 
     .userContainer {
@@ -49,39 +73,49 @@
     }
 
     .bordInput {
-      background-color: rgb(245, 27, 27);
-      margin-left: 50px;
-      margin-right: 50px;
+      background-color: #67629f;
+      margin-left: 2vw;
+      margin-right: 2vw;
       height: 300px;
       color: white;
-      display: flex; /* Flexbox 적용 */
-      justify-content: center; /* 가로 가운데 정렬 */
+
       align-items: center; /* 세로 가운데 정렬 */
     }
 
-    .bordInputMain {
-      width: 90%;
-      height: 80%;
-      background-color: rgb(87, 113, 102);
+    .bordTitle {
+      padding-left: 2vw;
+      padding-right: 2vw;
     }
-    .bordInputTitle {
-      width: 99%;
-      height: 20%;
+    .titleFont {
+      display: flex;
+      justify-content: center;
+      font-weight: bolder;
+      padding-top: 1vw;
+    }
+    .inputTitle {
       resize: none;
-      /* box-sizing: border-box; */
+      width: 100%;
     }
 
-    .bordInputContent {
-      width: 99%;
-      height: 80%;
+    .bordContent {
+      padding-left: 2vw;
+      padding-right: 2vw;
+    }
+    .contentFont {
+      display: flex;
+      justify-content: center;
+      font-weight: bolder;
+    }
+    .inputContent {
       resize: none;
-      /* box-sizing: border-box; */
+      width: 100%;
+      height: 170px;
     }
 
     /* 게시 버튼 (upload)*/
     .postUploadBox {
-      margin-left: 50px;
-      margin-right: 50px;
+      margin-left: 2vw;
+      margin-right: 2vw;
       background-color: rgb(231, 231, 231);
       display: flex;
       justify-content: flex-end; /* 변경: 오른쪽 정렬 */
@@ -89,70 +123,220 @@
     }
 
     .postUpload {
-      background-color: white;
-      color: black;
+      background-color: #67629f;
+      color: white;
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
       margin: 5px;
+      /* border: none; */
+      font-weight: bolder;
     }
     .postUpload:hover {
-      background-color: rgb(67, 64, 64);
+      cursor: pointer;
+      background-color: #2b2a42;
       color: white;
+    }
+
+    /* ------------------------------------------------------------------------------ */
+    /* ---------------------------------------------------------------------------------- */
+
+    .view {
+      display: flex;
+      width: 100%;
+      height: 110vh;
+      justify-content: flex-end;
+      /* overflow: auto; */
+    }
+
+    .mobile-view {
+      align-items: center;
+      border: none;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      /* overflow: auto; */
+      width: 100%;
+    }
+
+    .wrap {
+      height: 690px;
+      position: relative;
+      width: 320px;
+    }
+
+    .wrap::before {
+      content: "";
+      background-color: #fff;
+      box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+      height: 62px;
+      width: 100%;
+      border-radius: 46px 46px 0 0;
+      margin-bottom: -3px;
+    }
+
+    .wrap::after {
+      content: "";
+      background-color: #fff;
+      box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+      height: 62px;
+      width: 100%;
+      border-radius: 0px 0px 46px 46px;
+      margin-top: 3px;
+    }
+
+    .before-line {
+      background-color: #eff1f2;
+      border-radius: 1.5px;
+      height: 3px;
+      left: 50%;
+      position: absolute;
+      top: 23px;
+      transform: translateX(-50%) translateY(-50%);
+      width: 24px;
+    }
+
+    .main-view {
+      align-items: center;
+      background-color: #fff;
+      box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
+      height: 556px;
+      max-height: 566px;
+      width: 320px;
+      border: none;
+    }
+
+    /* ------------footer---------------------------------------------------- */
+
+    /* footer */
+    footer .inner {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 70px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      /* justify-content: center; */
+      align-items: center;
+      font-size: 12px;
+      background-color: rgb(222, 222, 222, 0.8);
+    }
+    footer .inner ul {
+      text-align: center;
+      list-style: none;
     }
   </style>
   <body>
-    <div class="defaultSetting">
-      <div class="mainTitle">Fit Track</div>
-    </div>
-    <!-- 게시물 & 입력창 -->
-    <div class="postAll">
-      <!-- "쓰기"를 눌렀을 때 나오는 창 -->
-      <form name="bord">
-        <div class="writeBord">
-          <!-- 게시물 쓰기 창의 topbar -->
-          <div class="bordTopbar">
-            <div class="userContainer">
-              <div class="userIcon">
-                <i class="fa-solid fa-user fa-xl" style="color: #ffff"></i>
-              </div>
-              <div class="userId">
-                &nbsp;&nbsp;user : <%= signinUser[0].signin_id%>
-              </div>
+    <div class="view">
+      <div class="mobile-view">
+        <div class="wrap">
+          <div class="before-line"></div>
+          <div class="main-view">
+            <!-- 게시물 & 입력창 -->
+            <div class="postAll">
+              <div class="postWriteFont">Post Write</div>
+              <!-- "쓰기"를 눌렀을 때 나오는 창 -->
+              <form name="bord">
+                <div class="writeBord">
+                  <!-- 게시물 쓰기 창의 topbar -->
+                  <div class="bordTopbar">
+                    <div class="userContainer">
+                      <div class="userIcon">
+                        <i
+                          class="fa-solid fa-user fa-regular"
+                          style="color: #ffff"
+                        ></i>
+                      </div>
+                      <div class="userId">
+                        &nbsp;&nbsp;user : <%= signinUser[0].signin_id%>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- title, content의 input창  -->
+                  <div class="bordInput">
+                    <div class="bordTitle">
+                      <div class="titleFont">TITLE</div>
+                      <textarea
+                        class="inputTitle"
+                        id="inputTitle"
+                        name="inputTitle"
+                        placeholder="Title"
+                      ></textarea>
+                    </div>
+
+                    <br />
+                    <div class="bordContent">
+                      <div class="contentFont">CONTENTS</div>
+                      <textarea
+                        class="inputContent"
+                        id="inputContent"
+                        name="inputContent"
+                        placeholder="Write Here ... "
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div class="postUploadBox">
+                    <button
+                      type="button"
+                      class="postUpload"
+                      onclick="postUpload()"
+                    >
+                      POST
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
-            <!-- 실시간 시간 가져오기 -->
-            <div class="timeNow">&nbsp;&nbsp;현재 시간</div>
-          </div>
 
-          <!-- title, content의 input창  -->
-          <div class="bordInput">
-            <div class="bordInputMain">
-              <div>제목</div>
-              <textarea
-                class="bordInputTitle"
-                id="bordInputTitle"
-                name="bordInputTitle"
-                placeholder="Title"
-              ></textarea>
+            <footer>
+              <div class="inner">
+                <ul class="home">
+                  <span class="material-symbols-outlined">
+                    <i
+                      class="fa-sharp fa-solid fa-house"
+                      style="color: #000000"
+                    ></i>
+                  </span>
+                  <div>Home</div>
+                </ul>
+                <a href="http://localhost:8000/">
+                  <ul class="community">
+                    <span class="material-symbols-outlined">
+                      <i
+                        class="fa-solid fa-clipboard"
+                        style="color: #000000"
+                      ></i>
+                    </span>
+                    <div>Bord</div>
+                  </ul>
+                </a>
+                <a href="http://localhost:8000/chat">
+                  <ul class="community-chat">
+                    <span class="material-symbols-outlined">
+                      <i class="fa-solid fa-comment" style="color: #000000"></i>
+                    </span>
 
-              <br />
-              <div>내용</div>
-              <textarea
-                class="bordInputContent"
-                id="bordInputContent"
-                name="bordInputContent"
-                placeholder="Write Here"
-              ></textarea>
-            </div>
-          </div>
+                    <div>Chat</div>
+                  </ul>
+                </a>
+                <ul class="setting">
+                  <span class="material-symbols-outlined">
+                    <i class="fa-solid fa-user" style="color: #000000"></i>
+                  </span>
 
-          <div class="postUploadBox">
-            <button type="button" class="postUpload" onclick="postUpload()">
-              게시
-            </button>
+                  <div>MyPage</div>
+                </ul>
+              </div>
+            </footer>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </body>
   <script>
@@ -160,7 +344,7 @@
 
     //게시 눌렀을 경우
     function postUpload() {
-      if (bordInputTitle.value == "" || bordInputContent.value == "") {
+      if (inputTitle.value == "" || inputContent.value == "") {
         alert("모든 값을 입력하세요");
         return;
       } else {
@@ -178,8 +362,8 @@
 
         const writeData = {
           user_id: "<%= signinUser[0].signin_id%>",
-          title: bord.bordInputTitle.value,
-          content: bord.bordInputContent.value,
+          title: bord.inputTitle.value,
+          content: bord.inputContent.value,
           created_date: created_date,
           created_time: created_time,
           like_count: 0,
@@ -192,8 +376,8 @@
         alert("게시글 업로드");
         window.location.href = "/";
         //버튼 눌리면 input태그 비워주기
-        bord.bordInputTitle.value = "";
-        bord.bordInputContent.value = "";
+        bord.inputTitle.value = "";
+        bord.inputContent.value = "";
       }
     }
   </script>
