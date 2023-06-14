@@ -8,12 +8,15 @@ router.get(
   authController.isLoggedIn,
   qrcodeController.qrcodePage
 );
+
 // 추천 qrcode
 router.post("/deadlift", qrcodeController.generateQRCode);
 router.post("/allinone", qrcodeController.generateAllInOneQRCode);
 router.post("/squat", qrcodeController.generateSquatQRCode);
 router.post("/ten", qrcodeController.generateTenQRCode);
 router.post("/abs", qrcodeController.generateAbsQRCode);
+
 router.get("/qrcode", qrcodeController.generateQRCode);
 router.get("/video", qrcodeController.playVideo);
+
 module.exports = router;

@@ -101,3 +101,7 @@ exports.playVideo = (req, res) => {
     // 여기서는 간단히 동영상 URL을 응답으로 보냄
     res.send(`동영상 재생: ${videoUrl}`);
 };
+
+exports.index3 = (req, res) => {
+    res.render("index3");
+};
