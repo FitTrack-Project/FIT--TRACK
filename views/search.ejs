@@ -49,9 +49,10 @@
       .buttonBar > .write,
       .buttonBar > .list {
         padding: 0.3vw;
-        width: 100%;
+        width: 90%;
         cursor: pointer;
         font-weight: bolder;
+        color: rgb(255, 255, 255);
       }
       .buttonBar > .search {
         padding: 0.1vw;
@@ -65,14 +66,15 @@
         color: white;
         /* color: black; */
       }
+
       /* ------------------------------------------------------------------------------------- */
 
       .allPostButton {
-        /* margin-top: 170px; */
         margin-bottom: 10px;
         margin-right: 10px;
         display: flex;
         justify-content: flex-end;
+        color: white;
       }
       .allPostButton:hover {
         color: gray;
@@ -81,10 +83,10 @@
       /* 게시글의 top bar ! margin-top으로 게시물 사이 간격 조정하기 */
 
       .bordTopbar {
-        background-color: #545082;
+        background-color: #263b54;
         margin-top: 3vh;
-        margin-left: 2vw;
-        /* margin-right: 2vw; */
+        margin-left: 4vw;
+        margin-right: 2vw;
         height: 4vh;
         color: white;
         border-bottom: 1px solid black;
@@ -92,6 +94,7 @@
         justify-content: space-between;
         align-items: center;
         font-size: 15px;
+        border: 1px solid white;
       }
 
       .userContainer {
@@ -99,27 +102,28 @@
         align-items: center;
         font-size: 15px;
       }
+
       /* 게시글의 내용  */
       .bordContent {
         /* background-color: rgb(225, 128, 225); */
-        /* margin-right: 2vw; */
-        margin-left: 2vw;
+        margin-left: 4vw;
+        margin-right: 2vw;
         color: white;
         font-size: 15px;
       }
       .bordContentTitle {
         background-color: #f5f5dc;
         border: 1px solid #545082;
-        color: purple;
+        color: #141e30;
         display: flex;
         justify-content: center;
         align-items: center;
         font-weight: bolder;
       }
       .bordContentContent {
-        background-color: #e0e0e055;
+        background-color: #ffffff6c;
         border: 1px solid #545082;
-        color: purple;
+        color: #141e30;
         display: flex;
         justify-content: center;
         margin: 0px;
@@ -214,12 +218,13 @@
 
       .main-view {
         align-items: center;
-        background-color: #fff;
         box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
         height: 556px;
         max-height: 566px;
         width: 320px;
+
         border: none;
+        background: linear-gradient(#141e30, #243b55);
       }
 
       /* ------------footer---------------------------------------------------- */
