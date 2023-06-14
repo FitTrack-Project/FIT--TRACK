@@ -1,8 +1,8 @@
 {
     "development": {
-        "username": "user",
-        "password": "1234567!",
-        "database": "mydb",
+        "username": "root",
+        "password": "!Qortmdcks95",
+        "database": "fittrack",
         "host": "127.0.0.1",
         "dialect": "mysql"
     },

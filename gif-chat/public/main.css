@@ -1,11 +1,140 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #333;
+  background-color: #e1eaea;
+}
+a {
+  text-decoration: none;
+}
+
+img {
+  /* img(인라인 요소) 하단에 Baseline 공백을 제거 */
+  display: block;
+}
+
+
+.view {
+  display: flex;
+  width: 100%;
+  height: 110vh;
+  justify-content: flex-end;
+}
+
+.mobile-view{
+  align-items: center;
+  border: none;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  overflow: auto;
+  width: 100%;
+}
+
+.wrap{
+  height: 690px;
+  position: relative;
+  width: 320px;
+}
+
+.wrap::before{
+  content: "";
+  background-color: #fff;
+  box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+  display: inline-block;
+  height: 62px;
+  width: 100%;
+  border-radius: 46px 46px 0 0;
+  margin-bottom: -3px;
+}
+
+.wrap::after{
+  content: "";
+  background-color: #fff;
+  box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+  display: inline-block;
+  height: 62px;
+  width: 100%;
+  border-radius: 0px 0px 46px 46px;
+  margin-top: 3px;
+}
+
+.before-line{
+  background-color: #eff1f2;
+  border-radius: 1.5px;
+  height: 3px;
+  left: 50%;
+  position: absolute;
+  top: 23px;
+  transform: translateX(-50%) translateY(-50%);
+  width: 24px;
+}
+
+.main-view{
+  align-items: center;
+  background-color: #fff;
+  box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+  height: 556px;
+  max-height: 566px;
+  width: 320px;
+  border: none;
+}
+
+
+footer .inner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 70px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content:space-around;
+  /* justify-content: center; */
+  align-items: center;
+  font-size: 12px;
+  background-color: rgb(222, 222, 222, 0.3);
+}
+
+footer .inner ul {
+  text-align: center;
+  list-style: none;
+}
+
+/* 
 html{
   width: 400px;
   margin: 0 auto;
-}
+} */
+
 fieldset{
-  height: 33rem;
+  position: relative;
+  top: 10px;
+  /* height: 480px; */
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  border: none;
 }
-* { box-sizing: border-box;  color: black; background-color: white;}
+
+fieldset > h1 {
+  font-size: 25px;
+}
+
+.create-line{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 5px 0 0;
+  margin: 5px 0 5px 0;
+}
+
 .mine { text-align: right; }
 .system { text-align: center; }
 .mine img, .other img {
@@ -29,17 +158,18 @@ th{
   padding: 2px 5px;
   max-width: 300px;
 }
-#exit-btn { position: absolute; top: 20px; right: 20px; }
-#chat-list { height: 600px; overflow: auto; padding: 5px; }
-#chat-form { text-align: right; }
+#exit-btn {display: flex; font-size: 14px; align-items: center; color: black;}
+#chat-list { height: 360px; overflow: auto; padding: 5px; margin-bottom: 20px; }
+#chat-form { text-align: center; }
 label[for='gif'], #chat, #chat-form [type='submit'] {
+  margin: 0 auto;
   margin-top: 5px;
   display: inline-block;
   height: 30px;
   vertical-align: top;
 }
 #chat{
-  width: 15.5rem;
+  width: 12rem;
 }
 label[for='gif'] { cursor: pointer; padding: 5px; border: 1px solid black; }
 #gif { display: none; }
@@ -49,25 +179,89 @@ table, table th, table td {
   border-collapse: collapse;
 }
 
-/* footer */
-footer .inner {
-  position:absolute;
-  bottom: 0;
-  margin: 0 auto;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  padding: 0px 5px 20px 5px; 
-  width: 370px;
-  display: flex;
-  justify-content:space-around;
-  align-items: center;
-  font-size: 12px;
-}
-footer .inner a{
-  text-align: center;
-}
+/* ------------------ */
+    .header {
+        position:absolute;
+        text-align: center;
+        background: linear-gradient(60deg, rgb(0, 0, 0) 0%, rgb(209, 209, 209) 100%);
+        color: white;
+        width: 100%;
+        height: 110vh;
+    }
 
-footer .inner ul{
-  text-align: center;
-  list-style: none;
-}
+    .logo {
+        width: 50px;
+        fill: white;
+        padding-right: 15px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .inner-header {
+        height: 65vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .flex {
+        /*Flexbox for containers*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .waves {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 20vh;
+        margin-bottom: -2px;
+        /*Fix for safari gap*/
+        min-height: 150px;
+        max-height: 300px;
+    }
+
+    .content {
+        position: relative;
+        height: 20vh;
+        text-align: center;
+        background-color: white;
+    }
+
+    /* Animation */
+    .parallax>use {
+        animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+    }
+
+    .parallax>use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+    }
+
+    .parallax>use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+    }
+
+    .parallax>use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+    }
+
+    .parallax>use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+    }
+
+    @keyframes move-forever {
+        0% {
+            transform: translate3d(-90px, 0, 0);
+        }
+
+        100% {
+            transform: translate3d(85px, 0, 0);
+        }
+    }
