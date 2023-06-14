@@ -37,13 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
 
             const username = document.querySelector("#username").value;
-            const password = document.querySelector("#password").value;
+            const pw = document.querySelector("#pw").value;
 
             // 서버로 로그인 요청 보내기
             axios
                 .post("/auth/login", {
                     username,
-                    password,
+                    pw,
                 })
                 .then((response) => {
                     alert(response.data.message);
