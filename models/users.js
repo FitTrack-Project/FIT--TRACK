@@ -22,7 +22,7 @@ module.exports = (Sequelize, DataTypes) => {
             },
             like_post_id: {
                 type: DataTypes.STRING(255),
-                allowNull: true,
+                allowNull: tr,
             },
         },
         {
