@@ -22,7 +22,7 @@ exports.createRoom = async (req, res, next) => {
             title: req.body.title,
             max: req.body.max,
             owner: req.body.owner,
-            pw: req.body.password,
+            pw: req.body.pw,
         });
         const io = req.app.get("io");
         io.of("/room").emit("newRoom", newRoom);

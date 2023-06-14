@@ -28,34 +28,28 @@ function isLoggedIn() {
     return isLoggedIn === "true"; // 문자열로 저장된 상태를 불리언 값으로 반환
 }
 
+function login() {
+    const username = document.querySelector("#username").value;
+    const pw = document.querySelector("#pw").value;
+
+    // 서버로 로그인 요청 보내기
+    axios
+        .post("/auth/login", {
+            username,
+            pw,
+        })
+        .then((response) => {
+            alert(response.data.message);
+            window.location.href = "/index3";
+        })
+        .catch((error) => {
+            console.error("로그인 실패:", error);
+            alert("로그인에 실패했습니다.");
+        });
+}
+
 // 로그아웃
 document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector("#loginForm");
-
-    if (loginForm) {
-        loginForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            const username = document.querySelector("#username").value;
-            const pw = document.querySelector("#pw").value;
-
-            // 서버로 로그인 요청 보내기
-            axios
-                .post("/auth/login", {
-                    username,
-                    pw,
-                })
-                .then((response) => {
-                    alert(response.data.message);
-                    window.location.href = "/index3";
-                })
-                .catch((error) => {
-                    console.error("로그인 실패:", error);
-                    alert("로그인에 실패했습니다.");
-                });
-        });
-    }
-
     const logoutLink = document.querySelector("#logoutLink");
 
     if (logoutLink) {

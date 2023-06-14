@@ -32,7 +32,7 @@ exports.registerUser = (req, res) => {
     const { username, name, pw } = req.body;
 
     // 비밀번호 암호화
-    const hashedPassword = bcrypt.hashSync(password, 10).substring(0, 255);
+    const hashedPassword = bcrypt.hashSync(pw, 10).substring(0, 255);
 
     const newUser = {
         username,

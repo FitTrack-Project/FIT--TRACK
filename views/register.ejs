@@ -6,43 +6,95 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/css/register.css" />
         <link rel="stylesheet" href="/css/reset.css" />
+        <script
+            src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+            crossorigin="anonymous"
+        ></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-        <title>Document</title>
+        <title>Register</title>
     </head>
-
     <body>
-        <form action="/auth/register" method="post" class="loginForm">
-            <div class="loginup">
-                <a class="title" href="/">FitTrack</a>
-                <div class="form-holder">
-                    <div>
-                        <div class="display">
-                            <input
-                                type="text"
-                                placeholder="아이디를 입력해주세요."
-                                id="username"
-                                class="login__input"
-                            />
-                            <button type="button" class="id_confirm">중복 확인</button>
-                        </div>
-                        <div class="error-message" id="id-error"></div>
-                        <input type="text" placeholder="이름을 입력해주세요." id="id" class="login__input" />
-                        <div class="error-message" id="name-error"></div>
-                        <input type="password" placeholder="비밀번호를 입력해주세요." id="pw" class="login__input" />
-                        <div class="error-message" id="pw-error"></div>
-                        <input
-                            type="password"
-                            placeholder="비밀번호를 다시 입력해주세요."
-                            id="pw_confirm"
-                            class="login__input"
+        <div class="header">
+            <div class="inner-header flex"></div>
+            <div>
+                <svg
+                    class="waves"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 24 180 28"
+                    preserveAspectRatio="none"
+                    shape-rendering="auto"
+                >
+                    <defs>
+                        <path
+                            id="gentle-wave"
+                            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
                         />
-                        <div class="error-message" id="pw-confirm-error"></div>
+                    </defs>
+                    <g class="parallax">
+                        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <div class="view">
+            <div class="mobile-view">
+                <div class="wrap">
+                    <div class="before-line"></div>
+                    <div class="main-view">
+                        <form action="/auth/register" method="post" class="loginForm">
+                            <div class="loginup">
+                                <a class="title" href="/">FitTrack</a>
+                                <div class="form-holder">
+                                    <div>
+                                        <div class="display">
+                                            <input
+                                                type="text"
+                                                placeholder="아이디를 입력해주세요."
+                                                id="username"
+                                                class="login__input"
+                                            />
+                                            <button type="button" class="id_confirm">중복 확인</button>
+                                        </div>
+                                        <div class="error-message" id="username-error"></div>
+                                        <div class="error-message" id="username-error"></div>
+                                        <input
+                                            type="text"
+                                            placeholder="이름을 입력해주세요."
+                                            id="name"
+                                            class="login__input"
+                                        />
+                                        <div class="error-message" id="name-error"></div>
+                                        <div class="error-message" id="name-error"></div>
+                                        <input
+                                            type="password"
+                                            placeholder="비밀번호를 입력해주세요."
+                                            id="pw"
+                                            class="login__input"
+                                        />
+                                        <div class="error-message" id="pw-error"></div>
+                                        <div class="error-message" id="pw-error"></div>
+                                        <input
+                                            type="password"
+                                            placeholder="비밀번호를 다시 입력해주세요."
+                                            id="pw_confirm"
+                                            class="login__input"
+                                        />
+                                        <div class="error-message" id="pw-confirm-error"></div>
+                                    </div>
+                                </div>
+                                <button class="register_btn" type="submit">회원가입</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <button class="register_btn" type="submit">회원가입</button>
             </div>
-        </form>
+        </div>
         <script src="/js/register.js"></script>
     </body>
 </html>
