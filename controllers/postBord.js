@@ -1,4 +1,4 @@
-const userData = require("../model");
+const userData = require("../models/postBord");
 
 // GET localhost:8000
 // 가져오는 데이터: 전체데이터, best3 데이터, 로그인 유저 데이터, 댓글 데이터

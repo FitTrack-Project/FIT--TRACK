@@ -9,59 +9,66 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <title>Document</title>
     <style>
-      /* ----------고정 상단바 ---------------------------------------------- */
-      .defaultSetting {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Nanum Gothic", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.4;
+        color: #333;
+        background-color: #e1eaea;
       }
 
-      .mainTitle {
-        background-color: rgb(182, 182, 182);
-        padding: 20px;
-        text-align: center;
-        font-size: 40px;
-      }
-      .buttonBar {
-        background-color: black;
-        color: white;
-        display: flex;
-        justify-content: flex-end;
-        padding: 10px;
-      }
-      .buttonBar > .goHome:hover {
-        cursor: pointer;
-        background-color: rgba(166, 166, 166, 0.5);
-        /* color: black; */
-      }
       /* -------changeButton------------------------------------------------------------------------ */
       .changeButton {
-        margin-top: 130px;
         display: flex;
-        padding: 1.5vw;
-        justify-content: flex-end;
+        padding-top: 1.5vw;
+        padding-bottom: 1.5vw;
+        justify-content: space-between;
       }
-      .changeButton > .correctionButton:hover {
+
+      .myPostFont {
+        color: purple;
+        font-weight: bold;
+        /* padding-left: 15px; */
+      }
+      .changeIcon {
+        display: flex;
+      }
+
+      .changeIcon > .correctionButton:hover {
         cursor: pointer;
         background-color: rgba(166, 166, 166, 0.5);
       }
-      .changeButton > .deleteButton:hover {
+      .changeIcon > .deleteButton:hover {
         cursor: pointer;
         background-color: rgba(166, 166, 166, 0.5);
       }
 
       /* ----listTopBar------------------------------------------------------- */
-      .listContainer {
-      }
+
       .listTopBar {
-        background-color: rgb(124, 173, 155);
+        background-color: #67629f;
         padding: 10px;
         display: flex;
         align-items: center;
         font-size: 10px;
+        color: white;
+        font-weight: 900;
       }
       .listTopBar > .number {
         width: 10%;
@@ -85,9 +92,8 @@
         font-size: 10px;
       }
       .newList:hover {
-        background-color: gray;
+        background-color: rgba(128, 128, 128, 0.426);
         cursor: pointer;
-        text-decoration: underline double;
       }
       .newList > .selectPost {
         width: 10%;
@@ -95,85 +101,227 @@
       .newList > .newTitle {
         width: 65%;
       }
+      .newList > .newTitle:hover {
+        text-decoration: underline double;
+      }
       .newList > .newDate {
         width: 20%;
       }
       .newList > .newLike {
         width: 5%;
       }
+      /* ---------------------------------------------------------------------------------- */
+
+      .view {
+        display: flex;
+        width: 100%;
+        height: 110vh;
+        justify-content: flex-end;
+        /* overflow: auto; */
+      }
+
+      .mobile-view {
+        align-items: center;
+        border: none;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        /* overflow: auto; */
+        width: 100%;
+      }
+
+      .wrap {
+        height: 690px;
+        position: relative;
+        width: 320px;
+      }
+
+      .wrap::before {
+        content: "";
+        background-color: #fff;
+        box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        height: 62px;
+        width: 100%;
+        border-radius: 46px 46px 0 0;
+        margin-bottom: -3px;
+      }
+
+      .wrap::after {
+        content: "";
+        background-color: #fff;
+        box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        height: 62px;
+        width: 100%;
+        border-radius: 0px 0px 46px 46px;
+        margin-top: 3px;
+      }
+
+      .before-line {
+        background-color: #eff1f2;
+        border-radius: 1.5px;
+        height: 3px;
+        left: 50%;
+        position: absolute;
+        top: 23px;
+        transform: translateX(-50%) translateY(-50%);
+        width: 24px;
+      }
+
+      .main-view {
+        align-items: center;
+        background-color: #fff;
+        box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
+        height: 556px;
+        max-height: 566px;
+        width: 320px;
+        border: none;
+      }
+
+      /* ------------footer---------------------------------------------------- */
+
+      /* footer */
+      footer .inner {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 70px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        /* justify-content: center; */
+        align-items: center;
+        font-size: 12px;
+        background-color: rgb(222, 222, 222, 0.8);
+      }
+      footer .inner ul {
+        text-align: center;
+        list-style: none;
+      }
     </style>
   </head>
   <body>
-    <!-- --------고정 topBar-------------------------------------------- -->
-    <div class="defaultSetting">
-      <div class="mainTitle">Fit Track</div>
-      <div class="buttonBar">
-        <div class="goHome">
-          <i
-            class="fa-solid fa-house"
-            style="color: #ffffff"
-            onclick="goHome()"
-          ></i>
-        </div>
-      </div>
-    </div>
+    <div class="view">
+      <div class="mobile-view">
+        <div class="wrap">
+          <div class="before-line"></div>
+          <div class="main-view">
+            <!-- ---------------수정, 삭제 버튼---------------------------------------------------------->
+            <div class="changeButton">
+              <div></div>
+              <div class="myPostFont">
+                <i class="fa-solid fa-user" style="color: #67629f"></i>&nbsp; MY
+                POST
+              </div>
 
-    <!-- ---------------수정, 삭제 버튼---------------------------------------------------------->
-    <div class="changeButton">
-      <div class="correctionButton">
-        <i
-          id="correctionButton"
-          class="fa-solid fa-pen-to-square fa-lg"
-          style="color: #080808"
-          onclick="clickCorrectionButton()"
-        ></i>
-      </div>
-      &nbsp;
-      <div class="deleteButton">
-        <i
-          id="deleteButton"
-          class="fa-solid fa-trash-can fa-lg"
-          style="color: #000000"
-          onclick="clickDeleteButton()"
-        ></i>
-      </div>
-    </div>
+              <div class="changeIcon">
+                <div class="correctionButton">
+                  <i
+                    id="correctionButton"
+                    class="fa-solid fa-pen-to-square fa-lg"
+                    style="color: #080808"
+                    onclick="clickCorrectionButton()"
+                  ></i>
+                </div>
+                &nbsp;
+                <div class="deleteButton">
+                  <i
+                    id="deleteButton"
+                    class="fa-solid fa-trash-can fa-lg"
+                    style="color: #000000"
+                    onclick="clickDeleteButton()"
+                  ></i>
+                </div>
+              </div>
+            </div>
 
-    <!-- ---------------main---------------------------------------------------------->
-    <div class="listContainer">
-      <div class="listTopBar">
-        <div class="number"></div>
-        <div class="title">TITLE</div>
-        <div class="date">DATE</div>
-        <div class="like">LIKE</div>
-      </div>
+            <!-- ---------------main---------------------------------------------------------->
+            <div class="listContainer">
+              <div class="listTopBar">
+                <div class="number"></div>
+                <div class="title">TITLE</div>
+                <div class="date">DATE</div>
+                <div class="like">LIKE</div>
+              </div>
 
-      <!-- 내 게시물만 가져오기 -->
-      <% for (let i = 0; i < myPostData.length; i++) { %>
-      <div class="newList">
-        <form name="selectPost">
-          <div class="selectPost" id="selectPost-<%= myPostData[i].post_id%>">
-            <input
-              type="checkbox"
-              id="selectPost-<%= myPostData[i].post_id%>"
-            />
+              <!-- 내 게시물만 가져오기 -->
+              <% for (let i = 0; i < myPostData.length; i++) { %>
+              <div class="newList">
+                <form name="selectPost">
+                  <div
+                    class="selectPost"
+                    id="selectPost-<%= myPostData[i].post_id%>"
+                  >
+                    <input
+                      type="checkbox"
+                      id="selectPost-<%= myPostData[i].post_id%>"
+                    />
+                  </div>
+                </form>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <div
+                  class="newTitle"
+                  id="newTitle-<%= myPostData[i].post_id%>"
+                  onclick="showPost(this)"
+                >
+                  <%= myPostData[i].title%>
+                </div>
+                <div class="newDate">
+                  <%= myPostData[i].created_date.toISOString().split('T')[0] %>
+                  &nbsp; <% const timeParts =
+                  myPostData[i].created_time.split(':'); %> <%= timeParts[0]
+                  %>:<%= timeParts[1] %>
+                </div>
+                <div class="newLike"><%= myPostData[i].like_count%></div>
+              </div>
+              <%}%>
+            </div>
+
+            <footer>
+              <div class="inner">
+                <ul class="home">
+                  <span class="material-symbols-outlined">
+                    <i
+                      class="fa-sharp fa-solid fa-house"
+                      style="color: #000000"
+                    ></i>
+                  </span>
+                  <div>Home</div>
+                </ul>
+                <a href="http://localhost:8000/">
+                  <ul class="community">
+                    <span class="material-symbols-outlined">
+                      <i
+                        class="fa-solid fa-clipboard"
+                        style="color: #000000"
+                      ></i>
+                    </span>
+                    <div>Bord</div>
+                  </ul>
+                </a>
+                <a href="http://localhost:8000/chat">
+                  <ul class="community-chat">
+                    <span class="material-symbols-outlined">
+                      <i class="fa-solid fa-comment" style="color: #000000"></i>
+                    </span>
+
+                    <div>Chat</div>
+                  </ul>
+                </a>
+                <ul class="setting">
+                  <span class="material-symbols-outlined">
+                    <i class="fa-solid fa-user" style="color: #000000"></i>
+                  </span>
+
+                  <div>MyPage</div>
+                </ul>
+              </div>
+            </footer>
           </div>
-        </form>
-        <div
-          class="newTitle"
-          id="newTitle-<%= myPostData[i].post_id%>"
-          onclick="showPost(this)"
-        >
-          <%= myPostData[i].title%>
         </div>
-        <div class="newDate">
-          <%= myPostData[i].created_date.toISOString().split('T')[0] %> &nbsp;
-          <% const timeParts = myPostData[i].created_time.split(':'); %> <%=
-          timeParts[0] %>:<%= timeParts[1] %>
-        </div>
-        <div class="newLike"><%= myPostData[i].like_count%></div>
       </div>
-      <%}%>
     </div>
   </body>
   <script>
@@ -182,11 +330,6 @@
     let checkedCheckboxes = [];
     let arrPostId = [];
     let postId;
-
-    // home으로 가기
-    function goHome() {
-      window.location.href = "/";
-    }
 
     function showPost(element) {
       const postId = element.id.split("-")[1];
