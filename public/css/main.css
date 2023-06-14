@@ -29,13 +29,14 @@ img {
 }
 
 .mobile-view {
-    align-items: center;
-    border: none;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    overflow: auto;
-    width: 100%;
+  align-items: center;
+  border: none;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+
 }
 
 .wrap {
@@ -87,6 +88,7 @@ img {
     border: none;
 }
 
+
 header {
     position: relative;
     width: 320px;
@@ -96,17 +98,25 @@ header {
     font-size: 12px;
 }
 .logo-category-btn-box {
+
+  color: #000000;
+  display: flex;
+  justify-content: space-between;
+
     background-color: #9288d960;
     display: flex;
     justify-content: space-between;
     padding: 10px 0 10px 0;
+
 }
 .welcomeUser {
     padding-right: 2px;
 }
 .logo-category-btn-box .logo img {
-    width: 150px;
-    height: 70px;
+
+  width: 180px;
+  height: 70px;
+
 }
 
 .category-btn {
@@ -132,25 +142,27 @@ header {
 }
 
 .categoty-menu {
-    background-color: red;
-    position: absolute;
-    top: 0;
-    left: -16px;
-    width: 320px;
-    height: 556px;
-    z-index: 77;
-    visibility: hidden;
-    transition: left ease 2s;
+
+  position: absolute;
+  top: 0;
+  left: -16px;
+  width: 320px;
+  height: 556px;
+  z-index: 77;
+  visibility: hidden;
+  transition: left ease 2s;
 }
 
 .category-menu .slide-in {
     visibility: visible;
 }
 
+
 /* 위쪽 슬라이더 */
+
 header .notice-line .inner {
-    height: 30px;
-    display: flex;
+
+  display: flex;
 }
 header .notice-line .inner__left .swiper-container {
     height: 30px;
@@ -162,12 +174,15 @@ header .notice-line .inner__left .swiper-slide {
     align-items: center;
 }
 header .notice-line .inner__left .swiper-slide a {
-    color: #333;
+  color: #000000;
 }
 
 header .notice-line .inner__left .notice-line__more .material-icons {
-    color: #fff;
-    font-size: 30px;
+  color: #000000;
+  font-size: 30px;
+    color: #333;
+}
+
 }
 
 /* main img log */
@@ -180,57 +195,153 @@ main .Logo {
     margin: 0 auto;
 }
 
+
 .scrollControl {
-    width: 325px;
-    height: 400px;
-    overflow: auto;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
 }
 
-.scrollControl::-webkit-scrollbar {
-    width: 0.5em; /* 스크롤바의 너비 */
-}
-
-.scrollControl::-webkit-scrollbar-track {
-    background: transparent; /* 스크롤바 트랙의 배경색 */
-}
-
-.scrollControl::-webkit-scrollbar-thumb {
-    background-color: transparent; /* 스크롤바 썸의 배경색 */
-}
 
 main .text {
-    width: 90%;
-    margin: 0 auto;
-    margin-top: 3px;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-    font-size: small;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 7px;
+  font-weight: 700;
+  font-size: small;
 }
 
+
+/* 미들 버튼 */
 main .middleButton {
-    display: flex;
-    justify-content: space-around;
-    padding-top: 20px;
-    /* color: white; */
+
+  position: relative;
+  display: flex;
+  justify-content:space-between;
+  width: 90%;
+  margin: 0 auto;
+  /* justify-content: space-around; */
+  margin-top: 20px;
+  overflow: hidden;
+  /* color: white; */
 }
-main .middleButton .qrButton {
-    display: inline;
-    background-color: #9288d960;
-    border-radius: 15vw;
-    padding: 15px;
-    align-items: center;
-    text-align: center;
-    /* padding-left: 6vw; */
+
+.button{
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 0 8px rgb(207, 207, 207);
 }
-main .middleButton .calc {
-    display: inline;
-    background-color: #9288d960;
-    border-radius: 15vw;
-    padding: 15px;
-    align-items: center;
-    text-align: center;
-    /* padding-right: 6vw; */
+
+.button:hover{
+  border: none;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: inset 0 0 8px #f9f8fc;
+  } 
+
+ #foot{
+  position: relative;
+  /* top: 15px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto; */
+  border: none;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 8px #d9d4e7;
+  width: 130px;
+  height: 65px;
+  background-color: #d9d4e7;
+  animation-duration: 5s;
 }
+
+.button-os{
+   position: absolute;
+    width: 130px;
+    height: 65px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    /* margin: auto;  */
+    background-color: #f9f8fc;
+    border: 2.5px solid #0e172c;
+    transition: background-color 2.2s;
+    transition-duration: 3s;
+    transition: 1.5s;
+  }
+  
+  .button-os:hover{
+    position: absolute;
+    top: 30px;
+    background-color: #fec7d7;
+  }
+  
+  .button-os a{
+    font-size: 20px;
+    display: block;
+    text-decoration: none;
+    color:#0e172c;
+    transition: 1.5s;
+  }
+  
+  .button-os a:hover{
+    letter-spacing: 5px;
+  }
+
+ #foot2{
+  position: relative;
+  margin-right: 0;
+  /* top: 15px; */
+  /* right: 0; */
+  /* bottom: 0; */
+  /* margin: auto; */
+  border: none;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 8px #d9d4e7;
+  width: 130px;
+  height: 65px;
+  background-color: #d9d4e7;
+  animation-duration: 5s;
+}
+
+  .button-os2{
+    position: absolute;
+     width: 130px;
+     height: 65px;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     /* margin: auto;  */
+     background-color: #f9f8fc;
+     border: 2.5px solid #0e172c;
+     transition: background-color 2.2s;
+     transition-duration: 3s;
+     transition: 1.5s;
+   }
+  
+   .button-os2:hover{
+    position: absolute;
+    top: 30px;
+    background-color: #fec7d7;
+  }
+  
+  .button-os2 a{
+    font-size: 20px;
+    display: block;
+    text-decoration: none;
+    color:#0e172c;
+    transition: 1.5s;
+  }
+  
+  .button-os2 a:hover{
+    letter-spacing: 5px;
+  }
+
+
+
+/* 다이어트 타이틀 */
 .dietTitle {
     /* 식단관리 title */
     padding-top: 15px;
@@ -255,16 +366,18 @@ main .middleButton .calc {
 /* center_select_box */
 
 main .center_select_box {
-    position: relative;
-    margin: 0 auto;
-    margin-top: 1rem;
-    height: 34px;
-    width: 90%;
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
-    border-radius: 5px;
-    background-color: rgb(215, 215, 215);
+
+  position: relative;
+  margin: 0 auto;
+  margin-top: 0.1rem;
+  height: 34px;
+  width: 90%;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  background-color: rgb(215, 215, 215);
+
 }
 
 main .center_select_box div {
@@ -287,6 +400,71 @@ main .center_select_box .material-icons {
     margin: auto;
 }
 
+/* 칼로리 테이블 */
+.ptable table{
+  width: 90%;
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+
+.ptable{
+  /* margin: 0px 0% 30px 0%; */
+}
+
+th, td {
+    padding: 1px;
+    font: 14px;
+}
+
+th{
+  background-color: black;
+  color: #ffe221;
+}
+
+.headin{
+  text-align: center;
+  text-decoration: none;
+  color: #ffe221;
+  margin-top: 10px;
+  display: block;
+}
+
+.wpos{
+  text-align: center;
+}
+
+.wpos td{
+  color: #77ff21;
+}
+
+.pos{
+  text-align: center;
+}
+
+.pos td{
+  color: #ff7b21;
+}
+
+table .col{
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.wpos:hover{
+  background-color: #77ff21;
+}
+
+.wpos:hover td{
+  color: #000000;
+}
+
+.pos:hover{
+  background-color: #ff7b21;
+}
+
+.pos:hover td{
+  color: #000000;
+}
+
 /*AWARDS*/
 .awards {
     width: 90%;
@@ -295,8 +473,9 @@ main .center_select_box .material-icons {
     background-color: #272727;
 }
 .awards .swiper-container {
-    width: 100%;
-    height: 100px;
+  width: 100%;
+  height: 60px;
+
 }
 .awards .swiper-container .swiper-wrapper .swiper-slide img {
     width: inherit;
@@ -360,5 +539,266 @@ footer .inner {
 }
 
 footer .inner ul {
-    text-align: center;
+  text-align: center;
 }
+
+
+/* ------------------ */
+    .header {
+        position:absolute;
+        text-align: center;
+        background: linear-gradient(60deg, rgb(0, 0, 0) 0%, rgb(209, 209, 209) 100%);
+        color: white;
+        width: 100%;
+        height: 110vh;
+    }
+
+    .logo {
+        width: 50px;
+        fill: white;
+        padding-right: 15px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .inner-header {
+        height: 65vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .flex {
+        /*Flexbox for containers*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .waves {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 20vh;
+        margin-bottom: -2px;
+        /*Fix for safari gap*/
+        min-height: 150px;
+        max-height: 300px;
+    }
+
+    .content {
+        position: relative;
+        height: 20vh;
+        text-align: center;
+        background-color: white;
+    }
+
+    /* Animation */
+    .parallax>use {
+        animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+    }
+
+    .parallax>use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+    }
+
+    .parallax>use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+    }
+
+    .parallax>use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+    }
+
+    .parallax>use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+    }
+
+    @keyframes move-forever {
+        0% {
+            transform: translate3d(-90px, 0, 0);
+        }
+
+        100% {
+            transform: translate3d(85px, 0, 0);
+        }
+    }
+
+
+
+/* 채팅 방 생성 css*/
+
+/* create room */
+.create-room{
+  width: 100%;
+  height: 85%;
+  margin: 0 auto;
+  padding:0;
+  font-family: sans-serif;
+}
+
+.login-box {
+  position: absolute;
+  width: 100%;
+  padding: 40px;
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  margin-top: 5px;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+.login-box form button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  width: 100%;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 5px;
+  letter-spacing: 4px;
+  background: none;
+}
+
+.login-box button:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+}
+
+.login-box button span {
+  position: absolute;
+  display: block;
+}
+
+.login-box button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.login-box button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.login-box button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.login-box button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
