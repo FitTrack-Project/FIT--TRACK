@@ -1,5 +1,5 @@
 /*COMMON*/
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -21,7 +21,6 @@ img {
   display: block;
 }
 
-
 .view {
   display: flex;
   width: 100%;
@@ -29,7 +28,7 @@ img {
   justify-content: flex-end;
 }
 
-.mobile-view{
+.mobile-view {
   align-items: center;
   border: none;
   display: flex;
@@ -39,16 +38,16 @@ img {
   width: 100%;
 }
 
-.wrap{
+.wrap {
   height: 690px;
   position: relative;
   width: 320px;
 }
 
-.wrap::before{
+.wrap::before {
   content: "";
   background-color: #fff;
-  box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+  box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
   display: inline-block;
   height: 62px;
   width: 100%;
@@ -56,10 +55,10 @@ img {
   margin-bottom: -3px;
 }
 
-.wrap::after{
+.wrap::after {
   content: "";
   background-color: #fff;
-  box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+  box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
   display: inline-block;
   height: 62px;
   width: 100%;
@@ -67,7 +66,7 @@ img {
   margin-top: 3px;
 }
 
-.before-line{
+.before-line {
   background-color: #eff1f2;
   border-radius: 1.5px;
   height: 3px;
@@ -78,17 +77,17 @@ img {
   width: 24px;
 }
 
-.main-view{
+.main-view {
   align-items: center;
   background-color: #fff;
-  box-shadow: -15px 8px 20px -10px rgba(0,0,0,.2);
+  box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
   height: 556px;
   max-height: 566px;
   width: 320px;
   border: none;
 }
 
-header{
+header {
   position: relative;
   width: 320px;
   height: 120px;
@@ -96,12 +95,16 @@ header{
   margin: 0 auto;
   font-size: 12px;
 }
-.logo-category-btn-box{
+.logo-category-btn-box {
+  background-color: #9288d960;
   display: flex;
   justify-content: space-between;
   padding: 10px 0 10px 0;
 }
-.logo-category-btn-box .logo img{
+.welcomeUser {
+  padding-right: 2px;
+}
+.logo-category-btn-box .logo img {
   width: 150px;
   height: 70px;
 }
@@ -117,19 +120,18 @@ header{
   cursor: pointer;
 }
 
-
-.category-btn-plus{
+.category-btn-plus {
   height: 30px;
   width: 30px;
   margin: auto;
   position: relative;
 }
 
-.category-btn-plus .material-symbols-outlined{
+.category-btn-plus .material-symbols-outlined {
   font-size: 30px;
 }
 
-.categoty-menu{
+.categoty-menu {
   background-color: red;
   position: absolute;
   top: 0;
@@ -144,7 +146,6 @@ header{
 .category-menu .slide-in {
   visibility: visible;
 }
-
 
 /* 위쪽 슬라이더 */
 header .notice-line .inner {
@@ -179,11 +180,76 @@ main .Logo {
   margin: 0 auto;
 }
 
+.scrollControl {
+  width: 325px;
+  height: 400px;
+  overflow: auto;
+}
+
+.scrollControl::-webkit-scrollbar {
+  width: 0.5em; /* 스크롤바의 너비 */
+}
+
+.scrollControl::-webkit-scrollbar-track {
+  background: transparent; /* 스크롤바 트랙의 배경색 */
+}
+
+.scrollControl::-webkit-scrollbar-thumb {
+  background-color: transparent; /* 스크롤바 썸의 배경색 */
+}
+
 main .text {
   width: 90%;
   margin: 0 auto;
+  margin-top: 3px;
   margin-bottom: 0.5rem;
   font-weight: 700;
+  font-size: small;
+}
+
+main .middleButton {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+  /* color: white; */
+}
+main .middleButton .qrButton {
+  display: inline;
+  background-color: #9288d960;
+  border-radius: 15vw;
+  padding: 15px;
+  align-items: center;
+  text-align: center;
+  /* padding-left: 6vw; */
+}
+main .middleButton .calc {
+  display: inline;
+  background-color: #9288d960;
+  border-radius: 15vw;
+  padding: 15px;
+  align-items: center;
+  text-align: center;
+  /* padding-right: 6vw; */
+}
+.dietTitle {
+  /* 식단관리 title */
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+.bordered-table {
+  /* padding-top: 3px; */
+  padding-bottom: 5px;
+  border-collapse: collapse;
+  display: flex;
+  justify-content: center;
+}
+
+.bordered-table th,
+.bordered-table td {
+  border: 1px solid black;
+  padding: 8px;
 }
 
 /* center_select_box */
@@ -198,7 +264,7 @@ main .center_select_box {
   align-content: center;
   justify-content: space-between;
   border-radius: 5px;
-  background-color: rgb(180, 180, 180);
+  background-color: rgb(215, 215, 215);
 }
 
 main .center_select_box div {
@@ -285,7 +351,7 @@ footer .inner {
   margin: 0 auto;
   width: 90%;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   /* justify-content: center; */
   align-items: center;
   font-size: 12px;
