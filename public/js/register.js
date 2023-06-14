@@ -116,7 +116,6 @@ function registerUser() {
     const name = nameInput.value;
     const pw = pwInput.value;
     const confirmPw = confirmPwInput.value;
-    console.log(confirmPw);
 
     if (!validateUsername(username)) {
         alert("영문 5~10자로 입력해주세요.");
