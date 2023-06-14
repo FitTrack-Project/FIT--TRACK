@@ -41,7 +41,7 @@
         align-items: center;
         font-size: 0.1vw;
         height: 3vw;
-        padding: 3vw 1vw 3vw 1vw;
+        padding: 3vw 1vw 3vw 3vw;
       }
 
       .buttonBar > .mypost,
@@ -51,16 +51,17 @@
         width: 100%;
         cursor: pointer;
         font-weight: bolder;
+        color: rgb(255, 255, 255);
       }
       .buttonBar > .search {
         padding: 0.1vw;
-        width: 60%;
+        width: 70%;
         display: flex;
       }
       .buttonBar > .mypost:hover,
       .buttonBar > .write:hover,
       .buttonBar > .TimeLine:hover {
-        background-color: #67629f;
+        background-color: #ffffff6c;
         color: white;
         /* color: black; */
       }
@@ -72,13 +73,13 @@
         margin-right: 2vw;
       }
       .listTopBar {
-        background-color: #67629f;
+        background-color: #263b54;
         color: white;
         padding: 10px;
         display: flex;
         align-items: center;
         font-size: 10px;
-        font-weight: bolder;
+        /* font-weight: bolder; */
       }
       .listTopBar > .number {
         width: 10%;
@@ -99,15 +100,18 @@
       /* -------newList-------------------------------------------------- */
 
       .newList {
-        background-color: rgba(187, 187, 187, 0.364);
+        background-color: rgba(255, 255, 255, 0.423);
         padding: 10px;
         display: flex;
         align-items: center;
         font-size: 10px;
+        color: white;
+        /* font-weight: bold; */
       }
       .newList:hover {
         background-color: rgba(128, 128, 128, 0.329);
         cursor: pointer;
+        color: white;
       }
       .newList > .newNumber {
         width: 10%;
@@ -117,6 +121,7 @@
       }
       .newList > .newTitle:hover {
         text-decoration: underline double;
+        color: white;
       }
       .newList > .newWriter {
         width: 20%;
@@ -189,12 +194,12 @@
 
       .main-view {
         align-items: center;
-        background-color: #fff;
         box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
         height: 556px;
         max-height: 566px;
         width: 320px;
         border: none;
+        background: linear-gradient(#141e30, #243b55);
       }
 
       /* ------------footer---------------------------------------------------- */
@@ -229,7 +234,9 @@
             <div class="buttonBar">
               <div class="mypost" onclick="mypostButton()">MYPOST</div>
               <div class="write" onclick="writeButton()">WRITE</div>
-              <div class="TimeLine" onclick="timeLineButton()">TimeLine</div>
+              <div class="TimeLine" onclick="timeLineButton()">
+                <i class="fa-solid fa-timeline" style="color: #ffffff"></i>
+              </div>
               <div class="search">
                 <input
                   type="text"
@@ -250,6 +257,7 @@
                 </button>
               </div>
             </div>
+            <hr />
             <!-- --------main---------------------------------------- -->
             <div class="listContainer">
               <div class="listTopBar">

@@ -42,26 +42,25 @@
     .postWriteFont {
       font-size: large;
       font-weight: bolder;
-      color: purple;
+      color: white;
       display: flex;
       justify-content: center;
-      padding-top: 4vw;
-      padding-bottom: 4vw;
+      padding-top: 2vw;
+      padding-bottom: 2vw;
     }
 
     /* 게시글 추가의 top bar */
     .bordTopbar {
-      background-color: rgb(71, 71, 75);
-      /* margin-top: 80px; */
+      background-color: #263b54;
+      margin-top: 2vw;
       margin-left: 2vw;
       margin-right: 2vw;
-      /* padding-bottom: 15px; */
       height: 5vh;
       color: white;
       border-bottom: 1px solid black;
-      display: flex; /* Flexbox 적용 */
-      justify-content: space-between; /* 좌우 정렬 */
-      align-items: center; /* 세로 가운데 정렬 */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .userIcon {
       margin-left: 10px;
@@ -73,13 +72,13 @@
     }
 
     .bordInput {
-      background-color: #67629f;
+      background-color: #ffffff6c;
       margin-left: 2vw;
       margin-right: 2vw;
       height: 300px;
       color: white;
 
-      align-items: center; /* 세로 가운데 정렬 */
+      align-items: center;
     }
 
     .bordTitle {
@@ -91,6 +90,7 @@
       justify-content: center;
       font-weight: bolder;
       padding-top: 1vw;
+      color: #141e30;
     }
     .inputTitle {
       resize: none;
@@ -105,6 +105,7 @@
       display: flex;
       justify-content: center;
       font-weight: bolder;
+      color: #141e30;
     }
     .inputContent {
       resize: none;
@@ -116,15 +117,15 @@
     .postUploadBox {
       margin-left: 2vw;
       margin-right: 2vw;
-      background-color: rgb(231, 231, 231);
+      background-color: #141e30;
       display: flex;
       justify-content: flex-end; /* 변경: 오른쪽 정렬 */
       align-items: flex-start;
     }
 
     .postUpload {
-      background-color: #67629f;
-      color: white;
+      background-color: white;
+      color: #141e30;
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
@@ -200,12 +201,12 @@
 
     .main-view {
       align-items: center;
-      background-color: #fff;
       box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
       height: 556px;
       max-height: 566px;
       width: 320px;
       border: none;
+      background: linear-gradient(#141e30, #243b55);
     }
 
     /* ------------footer---------------------------------------------------- */
@@ -239,6 +240,7 @@
             <!-- 게시물 & 입력창 -->
             <div class="postAll">
               <div class="postWriteFont">Post Write</div>
+              <hr />
               <!-- "쓰기"를 눌렀을 때 나오는 창 -->
               <form name="bord">
                 <div class="writeBord">
