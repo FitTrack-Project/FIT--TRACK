@@ -1,80 +1,113 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1>커뮤니티 채팅</h1>
-<fieldset>
-    <legend>채팅방 목록</legend>
-    <table>
-        <thead>
-            <tr>
-                <th>방 제목</th>
-                <th>종류</th>
-                <th>허용 인원</th>
-                <th>방장</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for room in rooms %}
-            <tr data-id="{{room._id}}">
-                <td>{{room.title}}</td>
-                <td>{{'비밀방' if room.password else '공개방'}}</td>
-                <td>{{room.max}}</td>
-                <td>{{room.owner}}</td>
-                <td>
-                    <button data-password="{{'true' if room.password else 'false'}}" data-id="{{room._id}}"
-                        class="join-btn">입장
-                    </button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div class="error-message">{{error}}</div>
-    <a href="/room">채팅방 생성</a>
-    <input type=" text" name="user_name" id="user_name" placeholder="입장이름">
-</fieldset>
-<footer>
-    <div class="inner">
-        <a href="http://127.0.0.1:5500/index.html">
-            <ul class="home">
-                <li>
-                    <span class="material-symbols-outlined">
-                        home
-                    </span>
-                </li>
 
-                <li>홈</li>
-            </ul>
-        </a>
-        <ul class="community">
-            <li>
-                <span class="material-symbols-outlined">
-                    favorite
-                </span>
-            </li>
-            <li>게시판</li>
-        </ul>
-        <a href="http://localhost:8005/">
-            <ul class="community-chat">
-                <li>
-                    <span class="material-symbols-outlined">
-                        chat
-                    </span>
-                </li>
-                <li>채팅</li>
-            </ul>
-        </a>
-        <ul class="setting">
-            <li>
-                <span class="material-symbols-outlined">
-                    settings
-                </span>
-            </li>
-            <li>설정</li>
-        </ul>
-
+<!--Hey! This is the original version
+of Simple CSS Waves-->
+<div class="header">
+    <!--Content before waves-->
+    <div class="inner-header flex">
     </div>
-</footer>
+    <!--Waves Container-->
+    <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 180 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+    </div>
+    <!--Waves end-->
+</div>
+<!--Header ends-->
+<!--Content starts-->
+<!--Content ends-->
+
+<div class="view">
+    <div class="mobile-view">
+        <div class="wrap">
+            <div class="before-line"></div>
+            <div class="main-view">
+                <fieldset>
+                    <!-- <img src="../public/images/fitness.png" alt=""> -->
+                    <h1>커뮤니티 채팅</h1>
+                    <div class="create-line">
+                        <legend>채팅방 목록</legend>
+                        <a href="/room">채팅방 생성</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>방 제목</th>
+                                <th>종류</th>
+                                <th>허용 인원</th>
+                                <th>방장</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for room in rooms %}
+                            <tr data-id="{{room._id}}">
+                                <td>{{room.title}}</td>
+                                <td>{{'비밀방' if room.password else '공개방'}}</td>
+                                <td>{{room.max}}</td>
+                                <td>{{room.owner}}</td>
+                                <td>
+                                    <button data-password="{{'true' if room.password else 'false'}}"
+                                        data-id="{{room._id}}" class="join-btn">입장
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="error-message">{{error}}</div>
+                </fieldset>
+
+                <footer>
+                    <div class="inner">
+                        <ul class="home">
+                            <span class="material-symbols-outlined">
+                                <i class="fa-sharp fa-solid fa-house" style="color: #000000"></i>
+                            </span>
+                            <div>Home</div>
+                        </ul>
+                        <a href="http://localhost:8000/">
+                            <ul class="community">
+                                <span class="material-symbols-outlined">
+                                    <i class="fa-solid fa-clipboard" style="color: #000000"></i>
+                                </span>
+                                <div>Bord</div>
+                            </ul>
+                        </a>
+                        <a href="http://localhost:8000/chat">
+                            <ul class="community-chat">
+                                <span class="material-symbols-outlined">
+                                    <i class="fa-solid fa-comment" style="color: #000000"></i>
+                                </span>
+                                <div>Chat</div>
+                            </ul>
+                        </a>
+                        <ul class="setting">
+                            <span class="material-symbols-outlined">
+                                <i class="fa-solid fa-user" style="color: #000000"></i>
+                            </span>
+                            <div>MyPage</div>
+                        </ul>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script src="/socket.io/socket.io.js"></script>
 <script>
     const socket = io.connect('http://localhost:8005/room', { // 네임스페이스

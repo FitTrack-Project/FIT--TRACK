@@ -13,7 +13,7 @@ const indexRouter = require('./routes');
 const connect = require('./schemas');
 
 const app = express();
-app.set('port', process.env.PORT || 8000);
+app.set('port', process.env.PORT || 8005);
 app.set('view engine', 'html');
 nunjucks.configure('views', {
   express: app,
@@ -47,7 +47,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/chat', indexRouter);
+app.use('/', indexRouter);
 
 app.use((req, res, next) => {
   const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
@@ -60,6 +60,11 @@ app.use((err, req, res, next) => {
   res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.get('/public/images/fitness.png', (req, res) => {
+  // Read the image file and send it as the response
+  res.sendFile('/path/to/fitness.png');
 });
 
 const server = app.listen(app.get('port'), () => {
