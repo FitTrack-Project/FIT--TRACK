@@ -33,26 +33,37 @@ of Simple CSS Waves-->
         <div class="wrap">
             <div class="before-line"></div>
             <div class="main-view">
-                <fieldset>
-                    <legend>채팅방 생성</legend>
-                    <form action="/room" method="post">
-                        <div>
-                            <input type="text" name="title" placeholder="방 제목">
+                <div class="create-room">
+                    <fieldset>
+                        <div class="login-box">
+                            <h2>Create a chat room</h2>
+                            <form action="/room" method="post">
+                                <div class="user-box">
+                                    <input type="text" name="title" placeholder="Room title">
+                                </div>
+                                <div class="user-box">
+                                    <input type="number" name="max" placeholder="Capacity (minimum of 2)" min="2"
+                                        value="10">
+                                </div>
+                                <div class="user-box">
+                                    <input type="password" name="password" placeholder="Password (if not, open room)">
+                                </div>
+                                <div class="user-box">
+                                    <input type="text" name="owner" placeholder="Boss Name">
+                                </div>
+                                <div>
+                                    <button type="submit">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        Create
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <div>
-                            <input type="number" name="max" placeholder="수용 인원(최소 2명)" min="2" value="10">
-                        </div>
-                        <div>
-                            <input type="password" name="password" placeholder="비밀번호(없으면 공개방)">
-                        </div>
-                        <div>
-                            <input type="text" name="owner" placeholder="방장이름">
-                        </div>
-                        <div>
-                            <button type="submit">생성</button>
-                        </div>
-                    </form>
-                </fieldset>
+                    </fieldset>
+                </div>
 
                 <footer>
                     <div class="inner">

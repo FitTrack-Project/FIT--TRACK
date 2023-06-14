@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
-
 html,
 body {
     position: relative;
-    width: 100%;
     min-height: 100vh;
-    background-color: #e1e8ee;
+    background-color: #E1E8EE;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +11,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 .title {
     text-decoration: none;
     color: white;
@@ -22,14 +19,13 @@ body {
     letter-spacing: 0.1rem;
     font-weight: 600;
 }
-
 .loginForm {
     background-color: #222;
-    height: 100%;
-    width: 100%;
+    border-radius: 15px;
+    height: 550px;
+    width: 350px;
     position: relative;
     overflow: hidden;
-
     &::after {
         content: "";
         opacity: 0.8;
@@ -41,7 +37,6 @@ body {
         background-size: cover;
         background-image: url("../images/2eaaaedc4391b6f39b23d989fec39cfc.jpg");
     }
-
     .loginup {
         position: absolute;
         top: 50%;
@@ -50,14 +45,12 @@ body {
         width: 65%;
         z-index: 5;
         -webkit-transition: all 0.3s ease;
-
         .form-holder {
             border-radius: 15px;
             background-color: #fff;
             overflow: hidden;
             margin-top: 40px;
             opacity: 1;
-
             .login__input {
                 border: 0;
                 outline: none;
@@ -71,7 +64,6 @@ body {
                 font-size: 12px;
             }
         }
-
         .login_btn {
             background-color: rgba(0, 0, 0, 0.4);
             color: rgba(256, 256, 256, 0.7);
@@ -87,14 +79,12 @@ body {
             opacity: 1;
             visibility: visible;
             -webkit-transition: all 0.3s ease;
-
             &:hover {
                 transition: all 0.3s ease;
                 background-color: rgba(0, 0, 0, 0.8);
             }
         }
     }
-
     .login {
         position: absolute;
         top: 20%;
@@ -104,7 +94,6 @@ body {
         background-color: #fff;
         z-index: 5;
         -webkit-transition: all 0.3s ease;
-
         &::before {
             content: "";
             position: absolute;
@@ -118,7 +107,6 @@ body {
             z-index: 4;
             -webkit-transition: all 0.3s ease;
         }
-
         .center {
             position: absolute;
             top: calc(50% - 10%);
@@ -128,18 +116,16 @@ body {
             z-index: 5;
             -webkit-transition: all 0.3s ease;
         }
-
         &.slide-up {
             top: 90%;
             -webkit-transition: all 0.3s ease;
         }
-
         .register_btn {
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            color: #2b2067;
+            color: #2B2067;
             font-weight: 600;
         }
     }
