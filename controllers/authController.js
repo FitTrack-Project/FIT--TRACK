@@ -29,7 +29,7 @@ exports.checkUsername = (req, res) => {
 
 // 회원가입 처리
 exports.registerUser = (req, res) => {
-    const { username, name, password } = req.body;
+    const { username, name, pw } = req.body;
 
     // 비밀번호 암호화
     const hashedPassword = bcrypt.hashSync(password, 10).substring(0, 255);
@@ -58,7 +58,7 @@ exports.loginPage = (req, res) => {
 
 // 로그인 처리
 exports.loginUser = (req, res) => {
-    const { username, password } = req.body;
+    const { username, pw } = req.body;
     User.findOne({ where: { username: username } })
         .then((user) => {
             if (!user) {
@@ -68,7 +68,7 @@ exports.loginUser = (req, res) => {
             }
 
             // 비밀번호 일치 여부를 확인
-            bcrypt.compare(password, user.pw, (err, result) => {
+            bcrypt.compare(pw, user.pw, (err, result) => {
                 if (err) {
                     console.error("비밀번호 비교 실패:", err);
                     res.status(500).json({ message: "로그인에 실패했습니다." });

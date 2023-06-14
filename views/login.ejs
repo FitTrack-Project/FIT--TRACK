@@ -1,6 +1,7 @@
 <!-- login.ejs -->
 <!DOCTYPE html>
 <html lang="ko">
+<<<<<<< HEAD
 
 <head>
     <meta charset="UTF-8" />
@@ -34,3 +35,39 @@
 </body>
 
 </html>
+=======
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/login.css" />
+        <link rel="stylesheet" href="/css/reset.css" />
+        <script
+            src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <title>Login</title>
+    </head>
+
+    <body>
+        <form action="/auth/register" method="post" class="loginForm">
+            <div class="loginup">
+                <a class="title" href="/">FitTrack</a>
+                <div class="form-holder">
+                    <input type="text" placeholder="아이디를 입력해주세요." id="username" class="login__input" />
+                    <input type="password" placeholder="비밀번호를 입력해주세요." id="pw" class="login__input" />
+                </div>
+                <button class="login_btn" type="submit">로그인</button>
+            </div>
+            <div class="login slide-up">
+                <div class="center">
+                    <a class="register_btn" href="auth/register">회원가입</a>
+                </div>
+            </div>
+        </form>
+        <script src="/js/login.js"></script>
+    </body>
+</html>
+>>>>>>> cbb046720c087f651ed392d646903a3241ebed72
