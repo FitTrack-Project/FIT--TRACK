@@ -1,83 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
     <head>
-        <title>FitTrack</title>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/css/style.css" />
         <link rel="stylesheet" href="/css/reset.css" />
         <link rel="stylesheet" href="/css/qrcode.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <script
+            src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://kit.fontawesome.com/693f483c38.js" crossorigin="anonymous"></script>
+        <title>FitTrack</title>
     </head>
     <body>
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title>FitTrack</title>
-                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <link rel="stylesheet" href="/css/style.css" />
-                <link rel="stylesheet" href="/css/reset.css" />
-                <link rel="stylesheet" href="/css/qrcode.css" />
-                <script>
-                    window.onload = function () {
-                        var qrCodeImg = document.querySelector(".qrImg");
-                        qrCodeImg.style.display = "block";
-                    };
-                </script>
-            </head>
-            <body>
+        <div class="header">
+            <div class="inner-header flex"></div>
+            <div>
+                <svg
+                    class="waves"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 24 180 28"
+                    preserveAspectRatio="none"
+                    shape-rendering="auto"
+                >
+                    <defs>
+                        <path
+                            id="gentle-wave"
+                            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+                        />
+                    </defs>
+                    <g class="parallax">
+                        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <div class="view">
+            <div class="mobile-view">
                 <div class="wrap">
-                    <div class="main">
-                        <header>
-                            <a class="logo" href="/">FitTrack</a>
-                            <div class="btn"></div>
-                        </header>
-
-                        <div class="main-menu">
-                            <div id="menu">
-                                <ul class="nav">
-                                    <li><a>칼로리 계산기</a></li>
-                                    <li><a>주변 헬스장 찾기</a></li>
-                                    <li><a href="/qrcodePage">운동 배우기</a></li>
-                                    <% if (loggedIn) { %>
-                                    <li><a href="/auth/logout" id="logoutLink">로그아웃</a></li>
-                                    <% } else { %>
-                                    <li><a href="/auth/login" id="loginLink">로그인</a></li>
-                                    <% } %>
-                                    <li><a href="/auth/register" class="registerBtn">회원가입</a></li>
-                                </ul>
-                                <div class="close"></div>
-                            </div>
-                        </div>
-
+                    <div class="before-line"></div>
+                    <div class="main-view">
                         <div class="contents">
-                            <h3>QR Code찍고</h3>
-                            <h2>운동하자!</h2>
-                            <form method="POST" action="/deadlift">
-                                <input type="submit" value="완벽한 데드리프트 강의" id="deadlift" class="first" />
-                            </form>
-                            <form method="POST" action="/allinone">
-                                <input type="submit" value="올인원 20분 전신운동" id="allinone" />
-                            </form>
-                            <form method="POST" action="/squat">
-                                <input type="submit" value="스쿼트 할때 꼭 봐야하는 영상" id="squat" />
-                            </form>
-                            <form method="POST" action="/ten">
-                                <input type="submit" value="10분만에 200칼로리 태우기" id="ten" />
-                            </form>
-                            <form method="POST" action="/abs">
-                                <input type="submit" value="서서하는 복근 운동" id="abs" />
-                            </form>
-
+                            <a class="title" href="/">FitTrack</a>
+                            <span class="sub_title">QR Code찍고 운동하자!</span>
                             <!-- QR 코드 표시 부분 -->
                             <% if (qrCodeUrl) { %>
                             <img src="<%= qrCodeUrl %>" class="qrImg" />
                             <% } %>
+                            <form method="POST" action="/deadlift">
+                                <input
+                                    type="submit"
+                                    value="완벽한 데드리프트 강의"
+                                    id="deadlift"
+                                    class="health first"
+                                />
+                            </form>
+                            <form method="POST" action="/allinone">
+                                <input type="submit" value="올인원 20분 전신운동" id="allinone" class="health" />
+                            </form>
+                            <form method="POST" action="/squat">
+                                <input type="submit" value="스쿼트 할때 꼭 봐야하는 영상" id="squat" class="health" />
+                            </form>
+                            <form method="POST" action="/ten">
+                                <input type="submit" value="10분만에 200칼로리 태우기" id="ten" class="health" />
+                            </form>
+                            <form method="POST" action="/abs">
+                                <input type="submit" value="서서하는 복근 운동" id="abs" class="health" />
+                            </form>
                         </div>
+                        <footer>
+                            <div class="inner">
+                                <ul class="home">
+                                    <span class="material-symbols-outlined">
+                                        <i class="fa-sharp fa-solid fa-house" style="color: #000000"></i>
+                                    </span>
+                                    <div>Home</div>
+                                </ul>
+                                <a href="http://localhost:8000/">
+                                    <ul class="community">
+                                        <span class="material-symbols-outlined">
+                                            <i class="fa-solid fa-clipboard" style="color: #000000"></i>
+                                        </span>
+                                        <div>Bord</div>
+                                    </ul>
+                                </a>
+                                <a href="http://localhost:8000/chat">
+                                    <ul class="community-chat">
+                                        <span class="material-symbols-outlined">
+                                            <i class="fa-solid fa-comment" style="color: #000000"></i>
+                                        </span>
+                                        <div>Chat</div>
+                                    </ul>
+                                </a>
+                                <ul class="setting">
+                                    <span class="material-symbols-outlined">
+                                        <i class="fa-solid fa-user" style="color: #000000"></i>
+                                    </span>
+                                    <% if (loggedIn) { %>
+                                    <li>
+                                        <button
+                                            onclick="logout()"
+                                            id="logoutLink"
+                                            style="border: none; background: none"
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
+                                    <% } else { %>
+                                    <li><button onclick="login()" id="loginLink">Login</button></li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                        </footer>
                     </div>
                 </div>
-                <script src="/js/login.js"></script>
-            </body>
-        </html>
+            </div>
+        </div>
+        <script src="/js/login.js"></script>
+        <script>
+            window.onload = function () {
+                var qrCodeImg = document.querySelector(".qrImg");
+                qrCodeImg.style.display = "block";
+            };
+        </script>
     </body>
 </html>

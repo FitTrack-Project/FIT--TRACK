@@ -1,466 +1,769 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://kit.fontawesome.com/693f483c38.js" crossorigin="anonymous"></script>
-        <script
-            src="https://code.jquery.com/jquery-3.7.0.min.js"
-            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-            crossorigin="anonymous"
-        ></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <title>Document</title>
-        <style>
-            body {
-                margin: 0px;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/693f483c38.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <!-- <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto"
+    /> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 
-            /* ----------고정 상단바 ---------------------------------------------- */
-            .defaultSetting {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-            }
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Nanum Gothic", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.4;
+        color: #333;
+        background-color: #e1eaea;
+      }
 
-            .mainTitle {
-                background-color: rgb(182, 182, 182);
-                padding: 20px;
-                text-align: center;
-                font-size: 40px;
-            }
-            .buttonBar {
-                background-color: black;
-                color: white;
-                display: flex;
-                justify-content: flex-end;
-                align-items: center; /* 추가된 부분 */
-                font-size: small;
-            }
+      /* ----------고정 상단바 ---------------------------------------------- */
 
-            .buttonBar > .mypost,
-            .buttonBar > .write,
-            .buttonBar > .list {
-                padding: 1.3vw;
-                cursor: pointer;
-            }
-            .buttonBar > .search {
-                padding: 10px;
-            }
-            .buttonBar > .mypost:hover,
-            .buttonBar > .write:hover,
-            .buttonBar > .list:hover {
-                background-color: white;
-                color: black;
-            }
-            /* ------------------------------------------------------------------------------------- */
-            /* 게시글의 bestPost ! margin-top으로 게시물 사이 간격 조정하기 */
-            .bestPost {
-                background-color: rgb(124, 173, 155);
-                margin-top: 160px;
-            }
+      .buttonBar {
+        color: black;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 0.1vw;
+        height: 3vw;
+        padding: 3vw 1vw 3vw 3vw;
+      }
 
-            .best1 {
-                color: blue;
-            }
+      .buttonBar > .mypost,
+      .buttonBar > .write,
+      .buttonBar > .list {
+        padding: 0.3vw;
+        width: 90%;
+        cursor: pointer;
+        font-weight: bolder;
+        color: rgb(255, 255, 255);
+      }
+      .buttonBar > .search {
+        padding: 0.1vw;
+        width: 70%;
+        display: flex;
+      }
+      .buttonBar > .mypost:hover,
+      .buttonBar > .write:hover,
+      .buttonBar > .list:hover {
+        background-color: #ffffff6c;
+        color: white;
+        /* color: black; */
+      }
 
-            /* ------------------------------------------------------------------------------------- */
+      /* ------------------------------------------------------------------------------------- */
+      /* 여기서 간격 조정하기  */
+      .bestPostContainer {
+        /* margin-top: 0.5vw; */
+        margin-left: 2vw;
+        margin-right: 2vw;
+      }
+      .bestPost {
+        color: rgb(255, 255, 255);
+        font-size: large;
+        font-weight: bolder;
+        /* font-style: italic; */
+        /* font-family: "Roboto", sans-serif; */
+        font-family: "Open Sans", sans-serif;
+        margin-bottom: 2.8vh;
+      }
+      .bestPostFont {
+        display: flex;
+        justify-content: center;
+      }
 
-            .mostRecentPost {
-                background-color: rgb(124, 173, 155);
-            }
+      .best1 {
+        color: rgb(255, 255, 255);
+        background-color: #67629f30;
+        margin-bottom: 0.5vh;
+        border: 1px solid #67629f30;
+        font-family: "Open Sans", sans-serif;
+      }
+      .best1:hover {
+        background-color: #ffffff6c;
+        color: #141e30;
+        cursor: pointer;
+      }
+      .best2 {
+        color: rgb(255, 255, 255);
+        background-color: #67629f30;
+        margin-bottom: 0.5vh;
+        border: 1px solid #67629f30;
+        font-family: "Open Sans", sans-serif;
+      }
+      .best2:hover {
+        background-color: #ffffff6c;
+        color: #141e30;
+        cursor: pointer;
+      }
+      .best3 {
+        color: rgb(255, 255, 255);
+        background-color: #67629f30;
+        border: 1px solid #67629f30;
+        font-family: "Open Sans", sans-serif;
+      }
+      .best3:hover {
+        background-color: #ffffff6c;
+        color: #141e30;
+        cursor: pointer;
+      }
 
-            .bordTopbar {
-                background-color: rgb(71, 71, 75);
-                margin-top: 50px;
-                margin-left: 50px;
-                margin-right: 50px;
-                /* padding-bottom: 15px; */
-                height: 7vh;
-                color: white;
-                border-bottom: 1px solid black;
-                display: flex; /* Flexbox 적용 */
-                justify-content: space-between; /* 좌우 정렬 */
-                align-items: center; /* 세로 가운데 정렬 */
-                font-size: 15px;
-            }
+      /* ------------------------------------------------------------------------------------- */
 
-            .userContainer {
-                display: flex;
-                align-items: center;
-                font-size: 15px;
-            }
-            /* 게시글의 내용  */
-            .bordContent {
-                background-color: rgb(225, 128, 225);
-                margin-left: 50px;
-                margin-right: 50px;
-                color: white;
-                font-size: 15px;
-            }
-            .bordContentTitle {
-                background-color: green;
-                display: flex;
-                justify-content: center;
-                /* align-items: center; */
-            }
-            .bordContentContent {
-                background-color: blue;
-                display: flex;
-                justify-content: center;
-                margin: 0px;
-                padding: 20px;
-            }
+      .mostRecentPostContainer {
+        margin-left: 2vw;
+        margin-right: 2vw;
+      }
 
-            /* 게시글의 댓글 */
-            .bordComment {
-                background-color: rgb(108, 150, 122);
-                margin-left: 50px;
-                margin-right: 50px;
-                /* padding-bottom: 2vh; */
-                /* border-bottom: 4vh; */
-                height: 5vh;
-                color: white;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                /* justify-content: center; */
-                font-size: 20px;
-            }
+      .mostRecentPost {
+        color: rgb(255, 255, 255);
+        font-size: large;
+        font-weight: bolder;
+        font-family: "Open Sans", sans-serif;
+      }
 
-            /* 하트, 하트 수 */
-            .bordComment > .heartNum {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
+      .mostRecentPostFont {
+        display: flex;
+        justify-content: center;
+      }
 
-            /* 댓글, 댓글 수 */
-            .commentNum {
-                display: flex;
-                align-items: center;
-                justify-self: center;
-            }
+      .bordTopbar {
+        background-color: #263b54;
+        margin-top: 3vh;
+        /* margin-left: 2vw; */
+        margin-right: 2vw;
+        height: 4vh;
+        color: white;
+        border-bottom: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 15px;
+        border: 1px solid white;
+      }
 
-            /* 댓글쓰기, 댓글 보내기 container */
-            .sendComment {
-                display: flex;
-                width: 70%;
-            }
+      .userContainer {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+      }
 
-            /* 댓글쓰기 */
-            .bordInputComment {
-                width: 70%;
-                height: 50%;
-                resize: none;
-                overflow: hidden;
-            }
-            /* ----------------------------------------------------------------------- */
+      .contain {
+        width: 300px;
+        height: 300px;
+        overflow: auto;
+      }
 
-            .emptyHeart {
-                cursor: auto;
-            }
-        </style>
-    </head>
-    <!-- 고정 상단바 -->
-    <body>
-        <div class="defaultSetting">
-            <div class="mainTitle">Fit Track</div>
+      .contain::-webkit-scrollbar {
+        width: 0.5em; /* 스크롤바의 너비 */
+      }
+
+      .contain::-webkit-scrollbar-track {
+        background: transparent; /* 스크롤바 트랙의 배경색 */
+      }
+
+      .contain::-webkit-scrollbar-thumb {
+        background-color: transparent; /* 스크롤바 썸의 배경색 */
+      }
+
+      .postBordContainer {
+        width: 300px;
+        height: 300px;
+      }
+
+      /* 게시글의 내용  */
+      .bordContent {
+        /* background-color: rgb(225, 128, 225); */
+        /* margin-left: 50px; */
+        margin-right: 2vw;
+        color: white;
+        font-size: 15px;
+      }
+      .bordContentTitle {
+        background-color: #f5f5dc;
+        border: 1px solid #545082;
+        color: #141e30;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bolder;
+      }
+      .bordContentContent {
+        background-color: #ffffff6c;
+        border: 1px solid #545082;
+        color: #141e30;
+        display: flex;
+        justify-content: center;
+        margin: 0px;
+        padding: 20px;
+      }
+
+      /* 게시글의 댓글 */
+      .bordComment {
+        background-color: #263b54;
+        /* margin-left: 50px; */
+        margin-right: 2vw;
+        height: 4vh;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 20px;
+        border: 1px solid white;
+        border-top: none;
+      }
+
+      /* 하트, 하트 수 */
+      .bordComment > .heartNum {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: small;
+        /* margin-left: 20px; */
+      }
+
+      /* 댓글, 댓글 수 */
+      .commentNum {
+        display: flex;
+        align-items: center;
+        justify-self: center;
+      }
+
+      /* 댓글쓰기, 댓글 보내기 container */
+      .sendComment {
+        display: flex;
+        width: 70%;
+        font-size: medium;
+        margin-left: 50px;
+      }
+
+      /* 댓글쓰기 */
+      .bordInputComment {
+        width: 70%;
+        height: 80%;
+        resize: none;
+        overflow: hidden;
+        font-size: small;
+      }
+      /* ----------------------------------------------------------------------- */
+
+      .emptyHeart {
+        cursor: auto;
+      }
+
+      /* ---------------------------------------------------------------------------------- */
+
+      .view {
+        display: flex;
+        width: 100%;
+        height: 110vh;
+        justify-content: flex-end;
+        /* overflow: auto; */
+      }
+
+      .mobile-view {
+        align-items: center;
+        border: none;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        /* overflow: auto; */
+        width: 100%;
+      }
+
+      .wrap {
+        height: 690px;
+        position: relative;
+        width: 320px;
+      }
+
+      .wrap::before {
+        content: "";
+        background-color: #fff;
+        box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        height: 62px;
+        width: 100%;
+        border-radius: 46px 46px 0 0;
+        margin-bottom: -3px;
+      }
+
+      .wrap::after {
+        content: "";
+        background-color: #fff;
+        box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        height: 62px;
+        width: 100%;
+        border-radius: 0px 0px 46px 46px;
+        margin-top: 3px;
+      }
+
+      .before-line {
+        background-color: #eff1f2;
+        border-radius: 1.5px;
+        height: 3px;
+        left: 50%;
+        position: absolute;
+        top: 23px;
+        transform: translateX(-50%) translateY(-50%);
+        width: 24px;
+      }
+
+      .main-view {
+        align-items: center;
+        box-shadow: -15px 8px 20px -10px rgba(0, 0, 0, 0.2);
+        height: 556px;
+        max-height: 566px;
+        width: 320px;
+        border: none;
+        background: linear-gradient(#141e30, #243b55);
+      }
+
+      /* ------------footer---------------------------------------------------- */
+
+      /* footer */
+      footer .inner {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 70px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        /* justify-content: center; */
+        align-items: center;
+        font-size: 12px;
+        background-color: rgb(222, 222, 222, 0.8);
+      }
+      footer .inner ul {
+        text-align: center;
+        list-style: none;
+      }
+    </style>
+  </head>
+  <!-- 고정 상단바 -->
+  <body>
+    <div class="view">
+      <div class="mobile-view">
+        <div class="wrap">
+          <div class="before-line"></div>
+          <div class="main-view">
             <div class="buttonBar">
-                <div class="mypost" onclick="mypostButton()">내 게시물</div>
-                <div class="write" onclick="writeButton()">쓰기</div>
-                <div class="list" onclick="listButton()">목록</div>
-                <div class="search">
-                    <input type="text" class="search" id="search" name="search" autocomplete="off" />
-                    <button id="searchButton" onclick="search()">검색</button>
-                </div>
+              <div class="mypost" onclick="mypostButton()">MYPOST</div>
+              <div class="write" onclick="writeButton()">WRITE</div>
+              <div class="list" onclick="listButton()">LIST</div>
+              <div class="search">
+                <input
+                  type="text"
+                  class="search"
+                  id="search"
+                  name="search"
+                  autocomplete="off"
+                />
+                <button
+                  id="searchButton"
+                  onclick="search()"
+                  style="background-color: #67629f"
+                >
+                  <i
+                    class="fa-solid fa-magnifying-glass fa-lg"
+                    style="color: #ffffff"
+                  ></i>
+                </button>
+              </div>
             </div>
-        </div>
-
-        <!-- bestPost, recentPost -->
-        <div class="bestPost">
             <hr />
-            <div>BEST POST</div>
-            <hr />
-        </div>
-
-        <!-- 데이터베이스가 비어있을 경우, like_count가 0일 경우 BEST POST 출력 -->
-        <ol>
-            <% noPostCount = 0 %> <% if (bestPost.length === 0) { %>
-            <div>게시물이 없습니다</div>
-            <% } else { %> <% for (let i = 0; i < bestPost.length; i++) { %> <% if (bestPost[i].like_count === 0) { %>
-            <% ++noPostCount %> <% continue %> <% } else { %>
-            <hr />
-            <li>
-                <div class="best" id="best-<%= bestPost[i].post_id%>" onclick="clickBestPost(this)">
-                    <%= bestPost[i].title %>
+            <div class="bestPostContainer">
+              <div class="bestPost">
+                <div class="bestPostFont">
+                  <i class="fa-solid fa-crown" style="color: #ffffff"></i>
+                  &nbsp; BEST POST
                 </div>
-            </li>
-            <hr />
-            <% } %> <% } %> <% } %>
-        </ol>
+              </div>
 
-        <div class="mostRecentPost">
-            <hr />
-            <div>Most Recent Post</div>
-            <hr />
-        </div>
-
-        <!------------------------게시물 띄우기!!!---------------------------------------------------->
-        <% if (searchAllData.length === 0) { %>
-        <div class="noPosts">게시물이 없습니다.</div>
-        <% } else { %> <% for (let i = 0; i < searchAllData.length; i++) { %>
-        <!-- 게시물을 띄우는 창 -->
-        <div class="postBord">
-            <!-- 게시물 쓰기 창의 topbar -->
-            <div class="bordTopbar">
-                <div class="userContainer">
-                    <div class="userIcon">&nbsp;&nbsp;<i class="fa-solid fa-user fa-lg" style="color: #ffff"></i></div>
-                    <div class="userId">&nbsp;<%= searchAllData[i].user_id %></div>
+              <!-- 데이터베이스가 비어있을 경우, like_count가 0일 경우 BEST POST 출력 -->
+              <ol>
+                <% noPostCount = 0 %> <% if (bestPost.length === 0) { %>
+                <div>게시물이 없습니다</div>
+                <% } else { %> <% for (let i = 0; i < bestPost.length; i++) { %>
+                <% if (bestPost[i].like_count === 0) { %> <% ++noPostCount %> <%
+                continue %> <% } else { %>
+                <!-- <hr /> -->
+                <div
+                  class="best<%=i+1%>"
+                  id="best-<%= bestPost[i].post_id%>"
+                  onclick="clickBestPost(this)"
+                >
+                  <%= i+1%>.&nbsp;&nbsp; <%= bestPost[i].title %>
                 </div>
-                <div class="timeNow">
-                    <%= searchAllData[i].created_date.toISOString().split('T')[0] %> <% const timeParts =
-                    searchAllData[i].created_time.split(':'); %> <%= timeParts[0] %>:<%= timeParts[1] %>&nbsp;&nbsp;
-                </div>
-            </div>
-
-            <div class="bordContent">
+                <!-- <hr /> -->
+                <% if(i==2){%>
                 <br />
-                <div class="bordContentTitle"><%= searchAllData[i].title %><br /></div>
-                <br />
-                <div class="bordContentContent"><%= searchAllData[i].content %></div>
+                <%}%> <% } %> <% } %> <% } %>
+              </ol>
             </div>
-            <div class="bordComment">
-                <!-- 비어있는 하트 -->
-                <div class="heartNum">
-                    &nbsp;
-                    <i
-                        id="emptyHeart-<%= searchAllData[i].post_id%>"
-                        class="fa-regular fa-heart fa-lg"
-                        style="color: #db0606"
-                        onclick="clickHeart(this)"
-                    ></i>
+            <div class="mostRecentPostContainer">
+              <div class="mostRecentPost">
+                <div class="mostRecentPostFont">
+                  <i class="fa-solid fa-paste" style="color: #ffffff"></i>
+                  &nbsp; Recent Post
+                </div>
+                <hr />
+              </div>
 
-                    <div class="likeCount" id="likeCount-<%= searchAllData[i].post_id%>">
-                        &nbsp;<%= searchAllData[i].like_count %>&nbsp;
+              <!------------------------게시물 띄우기!!!---------------------------------------------------->
+              <div class="contain">
+                <% if (searchAllData.length === 0) { %>
+                <div class="noPosts">게시물이 없습니다.</div>
+                <% } else { %> <% for (let i = 0; i < searchAllData.length; i++)
+                { %>
+                <!-- 게시물을 띄우는 창 -->
+
+                <div class="postBordContainer">
+                  <div class="postBord">
+                    <!-- 게시물 쓰기 창의 topbar -->
+                    <div class="bordTopbar">
+                      <div class="userContainer">
+                        <div class="userIcon">
+                          &nbsp;&nbsp;<i
+                            class="fa-solid fa-user fa-sm"
+                            style="color: #ffff"
+                          ></i>
+                        </div>
+                        <div class="userId">
+                          &nbsp;<%= searchAllData[i].user_id %>
+                        </div>
+                      </div>
+                      <div class="timeNow">
+                        <%=
+                        searchAllData[i].created_date.toISOString().split('T')[0]
+                        %> <% const timeParts =
+                        searchAllData[i].created_time.split(':'); %> <%=
+                        timeParts[0] %>:<%= timeParts[1] %>&nbsp;&nbsp;
+                      </div>
                     </div>
 
-                    <!-- 댓글 갯수-->
-                    <div class="commentNum">
+                    <div class="bordContent">
+                      <div class="bordContentTitle">
+                        <%= searchAllData[i].title %><br />
+                      </div>
+                      <div class="bordContentContent">
+                        <%= searchAllData[i].content %>
+                      </div>
+                    </div>
+                    <div class="bordComment">
+                      <!-- 비어있는 하트 -->
+                      <div class="heartNum">
+                        &nbsp;
                         <i
-                            id="commentNum-<%= searchAllData[i].post_id%>"
-                            class="fa-solid fa-comment-dots fa-lg"
-                            style="color: #000000"
-                            onclick="clickComment(this)"
+                          id="emptyHeart-<%= searchAllData[i].post_id%>"
+                          class="fa-regular fa-heart fa-lg"
+                          style="color: #db0606"
+                          onclick="clickHeart(this)"
                         ></i>
 
-                        <% let commentNum = 0; %> <% for (let j = 0; j < commentAllData.length; j++) { %><% if
-                        (commentAllData[j].post_id == searchAllData[i].post_id) { commentNum += 1; } %> <%}%>
-                        <div>&nbsp;<%= commentNum%>&nbsp;</div>
-                    </div>
-                </div>
-                <!-- 댓글작성 -->
-                <div class="sendComment">
-                    <form name="sendForm-<%= searchAllData[i].post_id%>" id="sendForm-<%= searchAllData[i].post_id%>">
-                        <textarea
+                        <div
+                          class="likeCount"
+                          id="likeCount-<%= searchAllData[i].post_id%>"
+                        >
+                          &nbsp;<%= searchAllData[i].like_count %>&nbsp;
+                        </div>
+
+                        <!-- 댓글 갯수-->
+                        <div class="commentNum">
+                          <i
+                            id="commentNum-<%= searchAllData[i].post_id%>"
+                            class="fa-solid fa-comment-dots fa-lg"
+                            style="color: #cecdff"
+                            onclick="clickComment(this)"
+                          ></i>
+
+                          <% let commentNum = 0; %> <% for (let j = 0; j <
+                          commentAllData.length; j++) { %><% if
+                          (commentAllData[j].post_id ==
+                          searchAllData[i].post_id) { commentNum += 1; } %>
+                          <%}%>
+                          <div>&nbsp;<%= commentNum%>&nbsp;</div>
+                        </div>
+                      </div>
+                      <!-- 댓글작성 -->
+                      <div class="sendComment">
+                        <form
+                          name="sendForm-<%= searchAllData[i].post_id%>"
+                          id="sendForm-<%= searchAllData[i].post_id%>"
+                        >
+                          <textarea
                             rows="1"
                             cols="50"
                             class="bordInputComment"
                             id="bordInputComment"
                             name="bordInputComment"
                             placeholder="Comment"
-                        ></textarea>
+                          ></textarea>
 
-                        <!-- 전송버튼 -->
-                        <i
-                            class="fa-regular fa-paper-plane fa-lg"
-                            style="color: #000000"
+                          <!-- 전송버튼 -->
+                          <i
+                            class="fa-regular fa-paper-plane fa-reguler"
+                            style="color: #ffffff"
                             id="sendButton-<%= searchAllData[i].post_id%>"
                             onclick="clickSendButton(this)"
-                        ></i>
-                    </form>
+                          ></i>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <% } %> <% } %>
                 </div>
+              </div>
             </div>
+            <footer>
+              <div class="inner">
+                <ul class="home">
+                  <span class="material-symbols-outlined">
+                    <i
+                      class="fa-sharp fa-solid fa-house"
+                      style="color: #000000"
+                    ></i>
+                  </span>
+                  <div>Home</div>
+                </ul>
+                <a href="http://localhost:8000/">
+                  <ul class="community">
+                    <span class="material-symbols-outlined">
+                      <i
+                        class="fa-solid fa-clipboard"
+                        style="color: #000000"
+                      ></i>
+                    </span>
+                    <div>Bord</div>
+                  </ul>
+                </a>
+                <a href="http://localhost:8000/chat">
+                  <ul class="community-chat">
+                    <span class="material-symbols-outlined">
+                      <i class="fa-solid fa-comment" style="color: #000000"></i>
+                    </span>
+
+                    <div>Chat</div>
+                  </ul>
+                </a>
+                <ul class="setting">
+                  <span class="material-symbols-outlined">
+                    <i class="fa-solid fa-user" style="color: #000000"></i>
+                  </span>
+
+                  <div>MyPage</div>
+                </ul>
+              </div>
+            </footer>
+          </div>
         </div>
-        <% } %> <% } %>
-    </body>
-    <script>
-        const postBord = document.querySelector(".postBord");
-        const write = document.querySelector(".write");
-        const list = document.querySelector(".list");
-        const writeBord = document.querySelector(".writeBord");
+      </div>
+    </div>
+  </body>
+  <script>
+    const postBord = document.querySelector(".postBord");
+    const write = document.querySelector(".write");
+    const list = document.querySelector(".list");
+    const writeBord = document.querySelector(".writeBord");
 
-        //user가 좋아요 눌러 놓은 post는 full 하트로 바꿔주기
-        let UserlikePostId = "<%=signinUser[0].like_post_id%>";
-        if (!(UserlikePostId == "" || UserlikePostId == "[]")) {
-            UserlikePostId = UserlikePostId.slice(1, -1);
-            UserlikePostId = UserlikePostId.split(",");
-            UserlikePostId = UserlikePostId.map((item) => parseInt(item.trim()));
-        } else {
-            UserlikePostId = [];
+    //user가 좋아요 눌러 놓은 post는 full 하트로 바꿔주기
+    let UserlikePostId = "<%=signinUser[0].like_post_id%>";
+    if (!(UserlikePostId == "" || UserlikePostId == "[]")) {
+      UserlikePostId = UserlikePostId.slice(1, -1);
+      UserlikePostId = UserlikePostId.split(",");
+      UserlikePostId = UserlikePostId.map((item) => parseInt(item.trim()));
+    } else {
+      UserlikePostId = [];
+    }
+
+    //배열에 있는 post_id값과 일치하는 post의 하트들을 full하트로 바꿔주기
+    for (let i = 0; i < UserlikePostId.length; i++) {
+      let likeCount = "#emptyHeart-" + parseInt(UserlikePostId[i]);
+      const defaultHeart = document.querySelector(likeCount);
+      defaultHeart.classList.remove("fa-regular");
+      defaultHeart.classList.add("fa-solid");
+    }
+
+    //localhost:8000/write
+    function writeButton() {
+      window.location.href = "/write";
+    }
+    //localhost:8000/list
+    function listButton() {
+      window.location.href = "/list";
+    }
+
+    //localhost:8000/search
+    function search() {
+      //검색 눌렀을 경우 데이터 베이스에서 일치하는 단어 있는 쿼리문 가져오기
+      const searchInput = document.getElementById("search");
+      if (!searchInput.value) {
+        alert("검색어를 입력하세요");
+      } else {
+        window.location.href = `/search?searchInput=${searchInput.value}`;
+      }
+    }
+
+    function clickBestPost(event) {
+      const postId = event.id.split("-")[1];
+      window.location.href = `/list/showPost?postId=${postId}`;
+    }
+
+    //댓글 아이콘 눌렀을 때 페이지 이동
+    function clickComment(element) {
+      const postId = element.id.split("-")[1];
+      window.location.href = `/list/showPost?postId=${postId}`;
+    }
+
+    const arrHeartPostId = UserlikePostId;
+    //하트 눌렀을 경우 like_count ++ 해주기
+    function clickHeart(element) {
+      // 좋아요 누른 post_id
+      const emptyHeartNum = element.id.split("-")[1];
+      //좋아요 누른 post_id를 배열로 만들어 signin_user에 저장하기
+
+      //하트 선택
+      let likeCount = "likeCount-" + emptyHeartNum;
+      likeCount = document.querySelector(`#${likeCount}`);
+      // 좋아요 아이콘 선택자 수정
+      const heartIcon = document.querySelector("#" + element.id);
+
+      if (heartIcon.classList.contains("fa-regular")) {
+        // 좋아요
+        heartIcon.classList.remove("fa-regular");
+        heartIcon.classList.add("fa-solid");
+        // 중복되지 않은 경우에만 좋아요 누른 게시물 배열에 push
+
+        if (!arrHeartPostId.includes(parseInt(emptyHeartNum))) {
+          arrHeartPostId.push(parseInt(emptyHeartNum));
         }
+        //나중에 함수화 하기!!!
+        axios({
+          //데이터베이스에 좋아요+1 값 업데이트(새로고침 했을때 반영)
+          method: "PATCH",
+          url: "/",
+          data: {
+            postId: emptyHeartNum,
+            msg: "fullHeart",
+          },
+        }).then((res) => {
+          //좋아요수 + 1
+          likeCount.textContent = res.data.likeCount[0].like_count + 1;
+          window.location.href = `/`;
+        });
+      } else if (heartIcon.classList.contains("fa-solid")) {
+        // 좋아요 취소
+        heartIcon.classList.remove("fa-solid");
+        heartIcon.classList.add("fa-regular");
 
-        //배열에 있는 post_id값과 일치하는 post의 하트들을 full하트로 바꿔주기
-        for (let i = 0; i < UserlikePostId.length; i++) {
-            let likeCount = "#emptyHeart-" + parseInt(UserlikePostId[i]);
-            const defaultHeart = document.querySelector(likeCount);
-            defaultHeart.classList.remove("fa-regular");
-            defaultHeart.classList.add("fa-solid");
+        // 중복되는 값이 있는 경우에만 좋아요 누른 게시물 배열에 splice
+        if (arrHeartPostId.includes(parseInt(emptyHeartNum))) {
+          const index = arrHeartPostId.indexOf(parseInt(emptyHeartNum));
+          if (index > -1) {
+            arrHeartPostId.splice(index, 1);
+          }
         }
+        axios({
+          method: "PATCH",
+          url: "/",
+          data: {
+            postId: emptyHeartNum,
+            msg: "emptyHeart",
+          },
+        }).then((res) => {
+          //좋아요수 - 1
+          likeCount.textContent = res.data.likeCount[0].like_count - 1;
+          window.location.href = `/`;
+        });
+      }
 
-        //localhost:8000/write
-        function writeButton() {
-            window.location.href = "/write";
-        }
-        //localhost:8000/list
-        function listButton() {
-            window.location.href = "/list";
-        }
+      //signin_user에 저장하기
+      axios({
+        method: "PATCH",
+        url: "/likeCountEdit",
+        data: arrHeartPostId,
+      }).then((res) => {
+        alert("좋아요 배열 수정성공");
+        window.location.href = "/"; //수정
+      });
+    }
 
-        //localhost:8000/search
-        function search() {
-            //검색 눌렀을 경우 데이터 베이스에서 일치하는 단어 있는 쿼리문 가져오기
-            const searchInput = document.getElementById("search");
-            if (!searchInput.value) {
-                alert("검색어를 입력하세요");
-            } else {
-                window.location.href = `/search?searchInput=${searchInput.value}`;
-            }
-        }
+    function mypostButton() {
+      //내 게시물 모아보기(쿼리스트링으로 로그인한 user의 signin_id보냄)
+      const signinId = "<%= signinUser[0].signin_id %>";
+      window.location.href = `/myPost?signinId=${signinId}`;
+    }
 
-        function clickBestPost(event) {
-            const postId = event.id.split("-")[1];
-            window.location.href = `/list/showPost?postId=${postId}`;
-        }
+    // comment_id, post_id, author_id, content, created_date
+    //댓글 쓰기
+    function clickSendButton(element) {
+      //게시글의 post_id
+      const commentPostNum = element.id.split("-")[1];
 
-        //댓글 아이콘 눌렀을 때 페이지 이동
-        function clickComment(element) {
-            const postId = element.id.split("-")[1];
-            window.location.href = `/list/showPost?postId=${postId}`;
-        }
+      const Sendbord = document.forms["sendForm-" + commentPostNum];
 
-        const arrHeartPostId = UserlikePostId;
-        //하트 눌렀을 경우 like_count ++ 해주기
-        function clickHeart(element) {
-            // 좋아요 누른 post_id
-            const emptyHeartNum = element.id.split("-")[1];
-            //좋아요 누른 post_id를 배열로 만들어 signin_user에 저장하기
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth() + 1;
+      const day = today.getDate();
+      const created_date = `${year}-${month}-${day}`;
 
-            //하트 선택
-            let likeCount = "likeCount-" + emptyHeartNum;
-            likeCount = document.querySelector(`#${likeCount}`);
-            // 좋아요 아이콘 선택자 수정
-            const heartIcon = document.querySelector("#" + element.id);
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      created_time = `${hours}:${minutes}`;
 
-            if (heartIcon.classList.contains("fa-regular")) {
-                // 좋아요
-                heartIcon.classList.remove("fa-regular");
-                heartIcon.classList.add("fa-solid");
-                // 중복되지 않은 경우에만 좋아요 누른 게시물 배열에 push
+      //send버튼 눌렀을 때 댓글 저장하기
+      const sendPostId = element.id.split("-")[1];
 
-                if (!arrHeartPostId.includes(parseInt(emptyHeartNum))) {
-                    arrHeartPostId.push(parseInt(emptyHeartNum));
-                }
-                //나중에 함수화 하기!!!
-                axios({
-                    //데이터베이스에 좋아요+1 값 업데이트(새로고침 했을때 반영)
-                    method: "PATCH",
-                    url: "/",
-                    data: {
-                        postId: emptyHeartNum,
-                        msg: "fullHeart",
-                    },
-                }).then((res) => {
-                    //좋아요수 + 1
-                    likeCount.textContent = res.data.likeCount[0].like_count + 1;
-                    window.location.href = `/`;
-                });
-            } else if (heartIcon.classList.contains("fa-solid")) {
-                // 좋아요 취소
-                heartIcon.classList.remove("fa-solid");
-                heartIcon.classList.add("fa-regular");
-
-                // 중복되는 값이 있는 경우에만 좋아요 누른 게시물 배열에 splice
-                if (arrHeartPostId.includes(parseInt(emptyHeartNum))) {
-                    const index = arrHeartPostId.indexOf(parseInt(emptyHeartNum));
-                    if (index > -1) {
-                        arrHeartPostId.splice(index, 1);
-                    }
-                }
-                axios({
-                    method: "PATCH",
-                    url: "/",
-                    data: {
-                        postId: emptyHeartNum,
-                        msg: "emptyHeart",
-                    },
-                }).then((res) => {
-                    //좋아요수 - 1
-                    likeCount.textContent = res.data.likeCount[0].like_count - 1;
-                    window.location.href = `/`;
-                });
-            }
-
-            //signin_user에 저장하기
-            axios({
-                method: "PATCH",
-                url: "/likeCountEdit",
-                data: arrHeartPostId,
-            }).then((res) => {
-                alert("좋아요 배열 수정성공");
-                window.location.href = "/"; //수정
-            });
-        }
-
-        function mypostButton() {
-            //내 게시물 모아보기(쿼리스트링으로 로그인한 user의 signin_id보냄)
-            const signinId = "<%= signinUser[0].signin_id %>";
-            window.location.href = `/myPost?signinId=${signinId}`;
-        }
-
-        // comment_id, post_id, author_id, content, created_date
-        //댓글 쓰기
-        function clickSendButton(element) {
-            //게시글의 post_id
-            const commentPostNum = element.id.split("-")[1];
-
-            const Sendbord = document.forms["sendForm-" + commentPostNum];
-
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = today.getMonth() + 1;
-            const day = today.getDate();
-            const created_date = `${year}-${month}-${day}`;
-
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            created_time = `${hours}:${minutes}`;
-
-            //send버튼 눌렀을 때 댓글 저장하기
-            const sendPostId = element.id.split("-")[1];
-
-            if (Sendbord.bordInputComment.value != "") {
-                const commentData = {
-                    post_id: sendPostId,
-                    signin_user_id: "<%= signinUser[0].signin_id%>",
-                    content: Sendbord.bordInputComment.value,
-                    created_date: created_date,
-                    created_time: created_time,
-                };
-                axios({
-                    method: "POST",
-                    url: "/",
-                    data: commentData,
-                });
-                alert("댓글 업로드");
-                Sendbord.bordInputComment.value = "";
-                window.location.href = "/";
-            } else {
-                alert("댓글을 작성해주세요");
-            }
-        }
-    </script>
+      if (Sendbord.bordInputComment.value != "") {
+        const commentData = {
+          post_id: sendPostId,
+          signin_user_id: "<%= signinUser[0].signin_id%>",
+          content: Sendbord.bordInputComment.value,
+          created_date: created_date,
+          created_time: created_time,
+        };
+        axios({
+          method: "POST",
+          url: "/",
+          data: commentData,
+        });
+        alert("댓글 업로드");
+        Sendbord.bordInputComment.value = "";
+        window.location.href = "/";
+      } else {
+        alert("댓글을 작성해주세요");
+      }
+    }
+  </script>
 </html>

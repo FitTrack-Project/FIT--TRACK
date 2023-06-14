@@ -1,5 +1,5 @@
 const express = require("express");
-const controller = require("../postBord");
+const controller = require("../controllers/postBord");
 const router = express.Router();
 
 //GET localhost:8000 (index)
