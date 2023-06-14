@@ -17,14 +17,26 @@
     </head>
 
     <body>
-        <form action="/auth/register" method="post" class="loginForm">
+        <form id="loginForm" class="loginForm">
             <div class="loginup">
                 <a class="title" href="/">FitTrack</a>
                 <div class="form-holder">
-                    <input type="text" placeholder="아이디를 입력해주세요." id="username" class="login__input" />
-                    <input type="password" placeholder="비밀번호를 입력해주세요." id="pw" class="login__input" />
+                    <input
+                        type="text"
+                        placeholder="아이디를 입력해주세요."
+                        id="username"
+                        name="username"
+                        class="login__input"
+                    />
+                    <input
+                        type="password"
+                        placeholder="비밀번호를 입력해주세요."
+                        id="pw"
+                        name="pw"
+                        class="login__input"
+                    />
                 </div>
-                <button class="login_btn" type="submit">로그인</button>
+                <button type="button" class="login_btn" onclick="login()">로그인</button>
             </div>
             <div class="login slide-up">
                 <div class="center">
