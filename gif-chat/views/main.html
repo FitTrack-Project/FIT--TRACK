@@ -1,0 +1,182 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!--Hey! This is the original version
+of Simple CSS Waves-->
+<div class="header">
+    <!--Content before waves-->
+    <div class="inner-header flex">
+    </div>
+    <!--Waves Container-->
+    <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 180 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+    </div>
+    <!--Waves end-->
+</div>
+<!--Header ends-->
+<!--Content starts-->
+<!--Content ends-->
+
+<div class="view">
+    <div class="mobile-view">
+        <div class="wrap">
+            <div class="before-line"></div>
+            <div class="main-view">
+                <div class="main-img"></div>
+                <fieldset>
+                    <!-- <img src="../public/images/fitness.png" alt=""> -->
+                    <h1>Community Chat</h1>
+                    <div class="create-line">
+                        <legend>Chat Room List</legend>
+                        <a href="/room" style="color: #fff;">Create room</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Room title</th>
+                                <th>Kind</th>
+                                <th>People</th>
+                                <th>Boss</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for room in rooms %}
+                            <tr data-id="{{room._id}}">
+                                <td>{{room.title}}</td>
+                                <td>{{'secret room' if room.password else 'open room'}}</td>
+                                <td>{{room.max}}</td>
+                                <td>{{room.owner}}</td>
+                                <td>
+                                    <button data-password="{{'true' if room.password else 'false'}}"
+                                        data-id="{{room._id}}" class="join-btn"
+                                        style="border: none; background: none; color: #fff;">입장
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="error-message">{{error}}</div>
+                </fieldset>
+
+                <footer>
+                    <div class="inner">
+                        <a href="http://localhost:3000/index3">
+                            <ul class="home">
+                                <span class="material-symbols-outlined">
+                                    <i class="fa-sharp fa-solid fa-house" style="color: #000000"></i>
+                                </span>
+                                <div style="color: #000000;">Home</div>
+                            </ul>
+                        </a>
+                        <a href="http://localhost:8000/">
+                            <ul class="community">
+                                <span class="material-symbols-outlined">
+                                    <i class="fa-solid fa-clipboard" style="color: #000000"></i>
+                                </span>
+                                <div style="color: #000000;">Bord</div>
+                            </ul>
+                        </a>
+                        <a href="http://localhost:8005/">
+                            <ul class="community-chat">
+                                <span class="material-symbols-outlined">
+                                    <i class="fa-solid fa-comment" style="color: #000000"></i>
+                                </span>
+                                <div style="color: #000000;">Chat</div>
+                            </ul>
+                        </a>
+                        <a href="#">
+                            <ul class="setting">
+                                <span class="material-symbols-outlined">
+                                    <i class="fa-solid fa-user" style="color: #000000"></i>
+                                </span>
+                                <div style="color: #000000;">MyPage</div>
+                            </ul>
+                        </a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io.connect('http://localhost:8005/room', { // 네임스페이스
+        path: '/socket.io',
+    });
+
+    socket.on('newRoom', function (data) { // 새 방 이벤트 시 새 방 생성
+        const tr = document.createElement('tr');
+        let td = document.createElement('td');
+        td.textContent = data.title;
+        tr.appendChild(td);
+        td = document.createElement('td');
+        td.textContent = data.password ? '비밀방' : '공개방';
+        tr.appendChild(td);
+        td = document.createElement('td');
+        td.textContent = data.max;
+        tr.appendChild(td);
+        td = document.createElement('td');
+        td.style.color = data.owner;
+        td.textContent = data.owner;
+        tr.appendChild(td);
+        td = document.createElement('td');
+        const button = document.createElement('button');
+        button.textContent = '입장';
+        button.dataset.password = data.password ? 'true' : 'false';
+        button.dataset.id = data._id;
+        button.addEventListener('click', addBtnEvent);
+        td.appendChild(button);
+        tr.appendChild(td);
+        tr.dataset.id = data._id;
+        document.querySelector('table tbody').appendChild(tr); // 화면에 추가
+    });
+
+    socket.on('removeRoom', function (data) { // 방 제거 이벤트 시 id가 일치하는 방 제거
+        document.querySelectorAll('tbody tr').forEach(function (tr) {
+            if (tr.dataset.id === data) {
+                tr.parentNode.removeChild(tr);
+            }
+        });
+    });
+
+    function addBtnEvent(e) { // 방 입장 클릭 시
+        if (e.target.dataset.password === 'true') {
+            const password = prompt('비밀번호를 입력하세요');
+            location.href = '/room/' + e.target.dataset.id + '?password=' + password;
+        } else {
+            location.href = '/room/' + e.target.dataset.id;
+        }
+    }
+
+    document.querySelectorAll('.join-btn').forEach(function (btn) {
+        btn.addEventListener('click', addBtnEvent);
+    });
+
+</script>
+{% endblock %}
+
+{% block script %}
+<script>
+    window.onload = () => {
+        if (new URL(location.href).searchParams.get('error')) {
+            alert(new URL(location.href).searchParams.get('error'));
+        }
+    };
+</script>
+{% endblock %}

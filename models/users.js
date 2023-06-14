@@ -20,6 +20,10 @@ module.exports = (Sequelize, DataTypes) => {
                 type: DataTypes.STRING(255),
                 allowNull: false,
             },
+            like_post_id: {
+                type: DataTypes.STRING(255),
+                allowNull: true,
+            },
         },
         {
             tableName: "users",

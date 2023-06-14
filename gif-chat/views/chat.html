@@ -1,0 +1,199 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!--Hey! This is the original version
+of Simple CSS Waves-->
+<div class="header">
+  <!--Content before waves-->
+  <div class="inner-header flex">
+  </div>
+  <!--Waves Container-->
+  <div>
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 180 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+      </g>
+    </svg>
+  </div>
+  <!--Waves end-->
+</div>
+<!--Header ends-->
+<!--Content starts-->
+<!--Content ends-->
+
+<div class="view">
+  <div class="mobile-view">
+    <div class="wrap">
+      <div class="before-line"></div>
+      <div class="main-view">
+        <div class="create-line">
+          <h1 style="color: black; margin-left: 10px;">{{title}}</h1>
+          <a href="/" id="exit-btn" style="margin-right:10px;">
+            <div>Exit</div>
+            <span class="material-symbols-outlined" style="font-size: 14px;">
+              logout
+            </span>
+          </a>
+        </div>
+        <fieldset style="background: linear-gradient(#141e30, #243b55); border-radius: 10px;">
+          <div style="margin: 5px 0 0 5px; border-bottom: 1px solid white;">Chatting content
+          </div>
+          <div id="chat-list">
+            {% for chat in chats %}
+            {% if chat.user === user %}
+            <div class="mine">
+              <div>{{chat.user}}</div>
+              {% if chat.gif %}}
+              <img src="/gif/{{chat.gif}}">
+              {% else %}
+              <div>{{chat.chat}}</div>
+              {% endif %}
+            </div>
+            {% elif chat.user === 'system' %}
+            <div class="system">
+              <div>{{chat.chat}}</div>
+            </div>
+            {% else %}
+            <div class="other">
+              <div>{{chat.user}}</div>
+              {% if chat.gif %}
+              <img src="/gif/{{chat.gif}}">
+              {% else %}
+              <div>{{chat.chat}}</div>
+              {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </fieldset>
+
+        <form action="/chat" id="chat-form" method="post" enctype="multipart/form-data">
+          <label for="gif">GIF Send</label>
+          <input type="file" id="gif" name="gif" accept="image/gif">
+          <input type="text" id="chat" name="chat">
+          <button type="submit">Send</button>
+        </form>
+
+        <footer>
+          <div class="inner">
+            <a href="http://localhost:3000/index3">
+              <ul class="home">
+                <span class="material-symbols-outlined">
+                  <i class="fa-sharp fa-solid fa-house" style="color: #000000"></i>
+                </span>
+                <div style="color: #000000;">Home</div>
+              </ul>
+            </a>
+            <a href="http://localhost:8000/">
+              <ul class="community">
+                <span class="material-symbols-outlined">
+                  <i class="fa-solid fa-clipboard" style="color: #000000"></i>
+                </span>
+                <div style="color: #000000;">Bord</div>
+              </ul>
+            </a>
+            <a href="http://localhost:8005/">
+              <ul class="community-chat">
+                <span class="material-symbols-outlined">
+                  <i class="fa-solid fa-comment" style="color: #000000"></i>
+                </span>
+                <div style="color: #000000;">Chat</div>
+              </ul>
+            </a>
+            <a href="#">
+              <ul class="setting">
+                <span class="material-symbols-outlined">
+                  <i class="fa-solid fa-user" style="color: #000000"></i>
+                </span>
+                <div style="color: #000000;">MyPage</div>
+              </ul>
+            </a>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io.connect('http://localhost:8005/chat', {
+    path: '/socket.io',
+  });
+  socket.emit('join', new URL(location).pathname.split('/').at(-1));
+  socket.on('join', function (data) {
+    const div = document.createElement('div');
+    div.classList.add('system');
+    const chat = document.createElement('div');
+    chat.textContent = data.chat;
+    div.appendChild(chat);
+    document.querySelector('#chat-list').appendChild(div);
+  });
+  socket.on('exit', function (data) {
+    const div = document.createElement('div');
+    div.classList.add('system');
+    const chat = document.createElement('div');
+    chat.textContent = data.chat;
+    div.appendChild(chat);
+    document.querySelector('#chat-list').appendChild(div);
+  });
+  socket.on('chat', function (data) {
+    const div = document.createElement('div');
+    if (data.user === '{{user}}') {
+      div.classList.add('mine');
+    } else {
+      div.classList.add('other');
+    }
+    const name = document.createElement('div');
+    name.textContent = data.user;
+    div.appendChild(name);
+    if (data.chat) {
+      const chat = document.createElement('div');
+      chat.textContent = data.chat;
+      div.appendChild(chat);
+    } else {
+      const gif = document.createElement('img');
+      gif.src = '/gif/' + data.gif;
+      div.appendChild(gif);
+    }
+    div.style.color = data.user;
+    document.querySelector('#chat-list').appendChild(div);
+  });
+  document.querySelector('#chat-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (e.target.chat.value) {
+      axios.post('/room/{{room._id}}/chat', {
+        chat: this.chat.value,
+      })
+        .then(() => {
+          e.target.chat.value = '';
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  });
+  document.querySelector('#gif').addEventListener('change', function (e) {
+    console.log(e.target.files);
+    const formData = new FormData();
+    formData.append('gif', e.target.files[0]);
+    axios.post('/room/{{room._id}}/gif', formData)
+      .then(() => {
+        e.target.file = null;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+</script>
+{% endblock %}

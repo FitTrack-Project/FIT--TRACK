@@ -1,21 +1,21 @@
-const idInput = document.querySelector("#id");
+const usernameInput = document.querySelector("#username");
 const nameInput = document.querySelector("#name");
-const passwordInput = document.querySelector("#pw");
-const confirmPasswordInput = document.querySelector("#pw_confirm");
+const pwInput = document.querySelector("#pw");
+const confirmPwInput = document.querySelector("#pw_confirm");
 const registerForm = document.querySelector("form");
 let isUsernameAvailable = false;
 
-idInput.addEventListener("input", () => {
-    const username = idInput.value;
-    const idError = document.querySelector("#id-error");
+usernameInput.addEventListener("input", () => {
+    const username = usernameInput.value;
+    const usernameError = document.querySelector("#username-error");
 
     if (!validateUsername(username)) {
-        idError.textContent = "영문 5~10자로 입력해주세요.";
-        idError.classList.add("invalid");
+        usernameError.textContent = "영문 5~10자로 입력해주세요.";
+        usernameError.classList.add("invalid");
         isUsernameAvailable = false;
     } else {
-        idError.textContent = "사용 가능한 ID입니다.";
-        idError.classList.remove("invalid");
+        usernameError.textContent = "사용 가능한 ID입니다.";
+        usernameError.classList.remove("invalid");
         isUsernameAvailable = false; // 아이디가 변경되면 중복 확인 상태를 초기화
     }
 });
@@ -33,11 +33,11 @@ nameInput.addEventListener("input", () => {
     }
 });
 
-passwordInput.addEventListener("input", () => {
-    const password = passwordInput.value;
+pwInput.addEventListener("input", () => {
+    const pw = pwInput.value;
     const pwError = document.querySelector("#pw-error");
 
-    if (!validatePassword(password)) {
+    if (!validatePassword(pw)) {
         pwError.textContent = "영문, 숫자, 특수문자를 필수로 조합하여 7글자 이상으로 입력해주세요.";
         pwError.classList.add("invalid");
     } else {
@@ -46,12 +46,12 @@ passwordInput.addEventListener("input", () => {
     }
 });
 
-confirmPasswordInput.addEventListener("input", () => {
-    const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
+confirmPwInput.addEventListener("input", () => {
+    const pw = pwInput.value;
+    const confirmPwInput = confirmPwInput.value;
     const pwConfirmError = document.querySelector("#pw-confirm-error");
 
-    if (password !== confirmPassword) {
+    if (pw !== confirmPwInput) {
         pwConfirmError.textContent = "비밀번호가 일치하지 않습니다.";
         pwConfirmError.classList.add("invalid");
     } else {
@@ -64,7 +64,7 @@ const idConfirmButton = document.querySelector(".id_confirm");
 idConfirmButton.addEventListener("click", (event) => {
     event.preventDefault();
 
-    const username = idInput.value;
+    const username = usernameInput.value;
 
     if (!validateUsername(username)) {
         alert("영문 5~10자로 입력해주세요.");
@@ -91,13 +91,13 @@ idConfirmButton.addEventListener("click", (event) => {
 registerForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const username = idInput.value;
+    const username = usernameInput.value;
     const name = nameInput.value;
-    const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
+    const pw = pwInput.value;
+    const confirmPw = confirmPwInput.value;
 
     // 입력 유효성 검사
-    if (!username || !name || !password || !confirmPassword) {
+    if (!username || !name || !pw || !confirmPw) {
         alert("모든 필수 항목을 입력해주세요.");
         return;
     }
@@ -112,10 +112,10 @@ registerForm.addEventListener("submit", (event) => {
 });
 
 function registerUser() {
-    const username = idInput.value;
+    const username = usernameInput.value;
     const name = nameInput.value;
-    const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
+    const pw = pwInput.value;
+    const confirmPw = confirmPwInput.value;
 
     if (!validateUsername(username)) {
         alert("영문 5~10자로 입력해주세요.");
@@ -127,26 +127,26 @@ function registerUser() {
         return;
     }
 
-    if (!validatePassword(password)) {
+    if (!validatePassword(pw)) {
         alert("영문, 숫자, 특수문자를 필수로 조합하여 7글자 이상으로 입력해주세요.");
         return;
     }
 
-    if (password !== confirmPassword) {
+    if (pw !== confirmPw) {
         alert("비밀번호가 일치하지 않습니다.");
         return;
     }
 
-    if (!username || !name || !password || !confirmPassword) {
+    if (!username || !name || !pw || !confirmPw) {
         alert("모든 필수 항목을 입력해주세요.");
         return;
     }
 
     axios
         .post("/auth/register", {
-            username: username,
-            name: name,
-            password: password,
+            username,
+            name,
+            pw,
         })
         .then((response) => {
             alert(response.data.message);
@@ -165,7 +165,7 @@ function validateUsername(username) {
     return regex.test(username);
 }
 
-function validatePassword(password) {
+function validatePassword(pw) {
     const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{7,}$/;
-    return regex.test(password);
+    return regex.test(pw);
 }

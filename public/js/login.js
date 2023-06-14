@@ -28,34 +28,28 @@ function isLoggedIn() {
     return isLoggedIn === "true"; // 문자열로 저장된 상태를 불리언 값으로 반환
 }
 
-// 로그아웃
-document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector("#loginForm");
+function login() {
+    const username = document.querySelector("#username").value;
+    const pw = document.querySelector("#pw").value;
 
-    if (loginForm) {
-        loginForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            const username = document.querySelector("#username").value;
-            const password = document.querySelector("#password").value;
-
-            // 서버로 로그인 요청 보내기
-            axios
-                .post("/auth/login", {
-                    username,
-                    password,
-                })
-                .then((response) => {
-                    alert(response.data.message);
-                    window.location.href = "/index";
-                })
-                .catch((error) => {
-                    console.error("로그인 실패:", error);
-                    alert("로그인에 실패했습니다.");
-                });
+    // 서버로 로그인 요청 보내기
+    axios
+        .post("/auth/login", {
+            username,
+            pw,
+        })
+        .then((response) => {
+            alert(response.data.message);
+            window.location.href = "/index3";
+        })
+        .catch((error) => {
+            console.error("로그인 실패:", error);
+            alert("로그인에 실패했습니다.");
         });
-    }
+}
 
+// 로그아웃
+function logout() {
     const logoutLink = document.querySelector("#logoutLink");
 
     if (logoutLink) {
@@ -63,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
 
             axios
-                .get("/auth/logout")
+                .get("auth/logout")
                 .then((response) => {
                     alert(response.data.message);
                     deleteAllCookies();
@@ -75,9 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         });
     }
+}
 
-    // 쿠키를 삭제하는 함수
-    function deleteAllCookies() {
-        document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-    }
-});
+// 쿠키를 삭제하는 함수
+function deleteAllCookies() {
+    document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+}
