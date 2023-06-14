@@ -97,6 +97,7 @@ img {
   margin: 0 auto;
   width: 94%;
   height: 72%;
+  border-radius: 10px;
   background: linear-gradient(#141e30, #243b55);
 }
 
@@ -142,8 +143,6 @@ fieldset > h1 {
 .create-line{
   display: flex;
   justify-content: space-between;
-  padding: 5px 5px 0 0;
-  margin: 5px 0 5px 0;
 }
 
 .mine { text-align: right; }
@@ -170,8 +169,8 @@ th{
   max-width: 300px;
 }
 #exit-btn {display: flex; font-size: 14px; align-items: center; color: black;}
-#chat-list { height: 360px; overflow: auto; padding: 5px; margin-bottom: 20px; }
-#chat-form { text-align: center; }
+#chat-list { height: 360px; overflow: auto; padding: 5px; margin-bottom: 20px; color: black;}
+#chat-form { text-align: center; margin-top: 10px;}
 label[for='gif'], #chat, #chat-form [type='submit'] {
   margin: 0 auto;
   margin-top: 5px;
@@ -182,7 +181,7 @@ label[for='gif'], #chat, #chat-form [type='submit'] {
 #chat{
   width: 12rem;
 }
-label[for='gif'] { cursor: pointer; padding: 5px; border: 1px solid black; }
+label[for='gif'] { font-size: 12px; cursor: pointer; padding: 5px; border: 1px solid black; color: black;}
 #gif { display: none; }
 table, table th, table td {
   text-align: center;

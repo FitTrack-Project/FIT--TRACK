@@ -35,16 +35,17 @@ of Simple CSS Waves-->
       <div class="before-line"></div>
       <div class="main-view">
         <div class="create-line">
-          <h1>{{title}}</h1>
-          <a href="/" id="exit-btn">
-            <div>방 나가기</div>
+          <h1 style="color: black; margin-left: 10px;">{{title}}</h1>
+          <a href="/" id="exit-btn" style="margin-right:10px;">
+            <div>Exit</div>
             <span class="material-symbols-outlined" style="font-size: 14px;">
               logout
             </span>
           </a>
         </div>
-        <fieldset>
-          <legend>채팅 내용</legend>
+        <fieldset style="background: linear-gradient(#141e30, #243b55); border-radius: 10px;">
+          <div style="margin: 5px 0 0 5px; border-bottom: 1px solid white;">Chatting content
+          </div>
           <div id="chat-list">
             {% for chat in chats %}
             {% if chat.user === user %}
@@ -73,42 +74,48 @@ of Simple CSS Waves-->
             {% endfor %}
           </div>
         </fieldset>
+
         <form action="/chat" id="chat-form" method="post" enctype="multipart/form-data">
-          <label for="gif">GIF 올리기</label>
+          <label for="gif">GIF Send</label>
           <input type="file" id="gif" name="gif" accept="image/gif">
           <input type="text" id="chat" name="chat">
-          <button type="submit">전송</button>
+          <button type="submit">Send</button>
         </form>
+
         <footer>
           <div class="inner">
-            <ul class="home">
-              <span class="material-symbols-outlined">
-                <i class="fa-sharp fa-solid fa-house" style="color: #000000"></i>
-              </span>
-              <div>Home</div>
-            </ul>
+            <a href="http://localhost:3000/index3">
+              <ul class="home">
+                <span class="material-symbols-outlined">
+                  <i class="fa-sharp fa-solid fa-house" style="color: #000000"></i>
+                </span>
+                <div style="color: #000000;">Home</div>
+              </ul>
+            </a>
             <a href="http://localhost:8000/">
               <ul class="community">
                 <span class="material-symbols-outlined">
                   <i class="fa-solid fa-clipboard" style="color: #000000"></i>
                 </span>
-                <div>Bord</div>
+                <div style="color: #000000;">Bord</div>
               </ul>
             </a>
-            <a href="http://localhost:8000/chat">
+            <a href="http://localhost:8005/">
               <ul class="community-chat">
                 <span class="material-symbols-outlined">
                   <i class="fa-solid fa-comment" style="color: #000000"></i>
                 </span>
-                <div>Chat</div>
+                <div style="color: #000000;">Chat</div>
               </ul>
             </a>
-            <ul class="setting">
-              <span class="material-symbols-outlined">
-                <i class="fa-solid fa-user" style="color: #000000"></i>
-              </span>
-              <div>MyPage</div>
-            </ul>
+            <a href="#">
+              <ul class="setting">
+                <span class="material-symbols-outlined">
+                  <i class="fa-solid fa-user" style="color: #000000"></i>
+                </span>
+                <div style="color: #000000;">MyPage</div>
+              </ul>
+            </a>
           </div>
         </footer>
       </div>
