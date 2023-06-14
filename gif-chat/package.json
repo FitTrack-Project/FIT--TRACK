@@ -4,9 +4,9 @@
   "description": "GIF 웹 소켓 채팅방",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app"
+    "start": "nodemon chat-app"
   },
-  "author": "Zero Cho",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "color-hash": "^2.0.1",

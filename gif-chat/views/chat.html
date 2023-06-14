@@ -1,44 +1,122 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1>{{title}}</h1>
-<a href="/" id="exit-btn">방 나가기</a>
-<fieldset>
-  <legend>채팅 내용</legend>
-  <div id="chat-list">
-    {% for chat in chats %}
-    {% if chat.user === user %}
-    <div class="mine">
-      <div>{{chat.user}}</div>
-      {% if chat.gif %}}
-      <img src="/gif/{{chat.gif}}">
-      {% else %}
-      <div>{{chat.chat}}</div>
-      {% endif %}
-    </div>
-    {% elif chat.user === 'system' %}
-    <div class="system">
-      <div>{{chat.chat}}</div>
-    </div>
-    {% else %}
-    <div class="other">
-      <div>{{chat.user}}</div>
-      {% if chat.gif %}
-      <img src="/gif/{{chat.gif}}">
-      {% else %}
-      <div>{{chat.chat}}</div>
-      {% endif %}
-    </div>
-    {% endif %}
-    {% endfor %}
+
+<!--Hey! This is the original version
+of Simple CSS Waves-->
+<div class="header">
+  <!--Content before waves-->
+  <div class="inner-header flex">
   </div>
-</fieldset>
-<form action="/chat" id="chat-form" method="post" enctype="multipart/form-data">
-  <label for="gif">GIF 올리기</label>
-  <input type="file" id="gif" name="gif" accept="image/gif">
-  <input type="text" id="chat" name="chat">
-  <button type="submit">전송</button>
-</form>
+  <!--Waves Container-->
+  <div>
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 180 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+      </g>
+    </svg>
+  </div>
+  <!--Waves end-->
+</div>
+<!--Header ends-->
+<!--Content starts-->
+<!--Content ends-->
+
+<div class="view">
+  <div class="mobile-view">
+    <div class="wrap">
+      <div class="before-line"></div>
+      <div class="main-view">
+        <div class="create-line">
+          <h1>{{title}}</h1>
+          <a href="/" id="exit-btn">
+            <div>방 나가기</div>
+            <span class="material-symbols-outlined" style="font-size: 14px;">
+              logout
+            </span>
+          </a>
+        </div>
+        <fieldset>
+          <legend>채팅 내용</legend>
+          <div id="chat-list">
+            {% for chat in chats %}
+            {% if chat.user === user %}
+            <div class="mine">
+              <div>{{chat.user}}</div>
+              {% if chat.gif %}}
+              <img src="/gif/{{chat.gif}}">
+              {% else %}
+              <div>{{chat.chat}}</div>
+              {% endif %}
+            </div>
+            {% elif chat.user === 'system' %}
+            <div class="system">
+              <div>{{chat.chat}}</div>
+            </div>
+            {% else %}
+            <div class="other">
+              <div>{{chat.user}}</div>
+              {% if chat.gif %}
+              <img src="/gif/{{chat.gif}}">
+              {% else %}
+              <div>{{chat.chat}}</div>
+              {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </fieldset>
+        <form action="/chat" id="chat-form" method="post" enctype="multipart/form-data">
+          <label for="gif">GIF 올리기</label>
+          <input type="file" id="gif" name="gif" accept="image/gif">
+          <input type="text" id="chat" name="chat">
+          <button type="submit">전송</button>
+        </form>
+        <footer>
+          <div class="inner">
+            <ul class="home">
+              <span class="material-symbols-outlined">
+                <i class="fa-sharp fa-solid fa-house" style="color: #000000"></i>
+              </span>
+              <div>Home</div>
+            </ul>
+            <a href="http://localhost:8000/">
+              <ul class="community">
+                <span class="material-symbols-outlined">
+                  <i class="fa-solid fa-clipboard" style="color: #000000"></i>
+                </span>
+                <div>Bord</div>
+              </ul>
+            </a>
+            <a href="http://localhost:8000/chat">
+              <ul class="community-chat">
+                <span class="material-symbols-outlined">
+                  <i class="fa-solid fa-comment" style="color: #000000"></i>
+                </span>
+                <div>Chat</div>
+              </ul>
+            </a>
+            <ul class="setting">
+              <span class="material-symbols-outlined">
+                <i class="fa-solid fa-user" style="color: #000000"></i>
+              </span>
+              <div>MyPage</div>
+            </ul>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>

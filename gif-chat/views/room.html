@@ -1,24 +1,94 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<fieldset>
-    <legend>채팅방 생성</legend>
-    <form action="/room" method="post">
-        <div>
-            <input type="text" name="title" placeholder="방 제목">
+<!--Hey! This is the original version
+of Simple CSS Waves-->
+<div class="header">
+    <!--Content before waves-->
+    <div class="inner-header flex">
+    </div>
+    <!--Waves Container-->
+    <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 180 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+    </div>
+    <!--Waves end-->
+</div>
+<!--Header ends-->
+<!--Content starts-->
+<!--Content ends-->
+
+<div class="view">
+    <div class="mobile-view">
+        <div class="wrap">
+            <div class="before-line"></div>
+            <div class="main-view">
+                <fieldset>
+                    <legend>채팅방 생성</legend>
+                    <form action="/room" method="post">
+                        <div>
+                            <input type="text" name="title" placeholder="방 제목">
+                        </div>
+                        <div>
+                            <input type="number" name="max" placeholder="수용 인원(최소 2명)" min="2" value="10">
+                        </div>
+                        <div>
+                            <input type="password" name="password" placeholder="비밀번호(없으면 공개방)">
+                        </div>
+                        <div>
+                            <input type="text" name="owner" placeholder="방장이름">
+                        </div>
+                        <div>
+                            <button type="submit">생성</button>
+                        </div>
+                    </form>
+                </fieldset>
+
+                <footer>
+                    <div class="inner">
+                        <ul class="home">
+                            <span class="material-symbols-outlined">
+                                <i class="fa-sharp fa-solid fa-house" style="color: #000000"></i>
+                            </span>
+                            <div>Home</div>
+                        </ul>
+                        <a href="http://localhost:8000/">
+                            <ul class="community">
+                                <span class="material-symbols-outlined">
+                                    <i class="fa-solid fa-clipboard" style="color: #000000"></i>
+                                </span>
+                                <div>Bord</div>
+                            </ul>
+                        </a>
+                        <a href="http://localhost:8000/chat">
+                            <ul class="community-chat">
+                                <span class="material-symbols-outlined">
+                                    <i class="fa-solid fa-comment" style="color: #000000"></i>
+                                </span>
+                                <div>Chat</div>
+                            </ul>
+                        </a>
+                        <ul class="setting">
+                            <span class="material-symbols-outlined">
+                                <i class="fa-solid fa-user" style="color: #000000"></i>
+                            </span>
+                            <div>MyPage</div>
+                        </ul>
+                    </div>
+                </footer>
+            </div>
         </div>
-        <div>
-            <input type="number" name="max" placeholder="수용 인원(최소 2명)" min="2" value="10">
-        </div>
-        <div>
-            <input type="password" name="password" placeholder="비밀번호(없으면 공개방)">
-        </div>
-        <div>
-            <input type="text" name="owner" placeholder="방장이름">
-        </div>
-        <div>
-            <button type="submit">생성</button>
-        </div>
-    </form>
-</fieldset>
+    </div>
+</div>
+
 {% endblock %}

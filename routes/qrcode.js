@@ -15,7 +15,7 @@ router.post("/deadlift", qrcodeController.generateQRCode);
 router.post("/allinone", qrcodeController.generateAllInOneQRCode);
 router.post("/squat", qrcodeController.generateSquatQRCode);
 router.post("/ten", qrcodeController.generateTenQRCode);
-router.post("/abs", router.generateAbsQRCode);
+router.post("/abs", qrcodeController.generateAbsQRCode);
 
 router.get("/qrcode", qrcodeController.generateQRCode);
 router.get("/video", qrcodeController.playVideo);
